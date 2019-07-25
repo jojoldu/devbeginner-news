@@ -1,0 +1,8 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+    }
+}
+rootProject.name = 'devbeginner-news'
+include 'devbeginner-news-web'
+include 'devbeginner-news-core'
