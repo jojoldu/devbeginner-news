@@ -1,4 +1,4 @@
-package com.jojoldu.devbeginnernews.core.article;
+package com.jojoldu.devbeginnernews.core.article.count;
 
 import com.jojoldu.devbeginnernews.core.common.BaseTimeEntity;
 import lombok.Getter;

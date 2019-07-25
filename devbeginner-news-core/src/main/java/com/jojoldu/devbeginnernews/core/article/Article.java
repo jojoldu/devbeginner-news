@@ -36,6 +36,9 @@ public class Article extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, length = 200)
+    private String title;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 50)
     private ArticleType articleType;
@@ -51,7 +54,8 @@ public class Article extends BaseTimeEntity {
     private long descIndex;
 
     @Builder
-    public Article(ArticleType articleType, String content, String link, LocalDateTime registrationDateTime) {
+    public Article(String title, ArticleType articleType, String content, String link, LocalDateTime registrationDateTime) {
+        this.title = title;
         this.articleType = articleType;
         this.content = content;
         this.link = link;

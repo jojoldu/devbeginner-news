@@ -1,4 +1,5 @@
 dependencies {
+    compile project(':devbeginner-news-core')
     compile 'org.springframework.boot:spring-boot-starter-actuator'
     compile 'org.springframework.boot:spring-boot-starter-mustache'
     compile 'org.springframework.boot:spring-boot-starter-web'
