@@ -6,6 +6,9 @@ build/
 !**/src/test/**
 
 logs
+keystore.p12
+sample.json
+facebook.yml
 
 ### STS ###
 .apt_generated

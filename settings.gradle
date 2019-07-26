@@ -6,3 +6,4 @@ pluginManagement {
 rootProject.name = 'devbeginner-news'
 include 'devbeginner-news-web'
 include 'devbeginner-news-core'
+include 'devbeginner-news-batch'

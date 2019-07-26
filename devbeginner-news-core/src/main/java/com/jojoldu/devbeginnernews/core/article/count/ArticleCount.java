@@ -40,7 +40,7 @@ public class ArticleCount extends BaseTimeEntity {
     public static ArticleCount newInstance(Long articleId) {
         return ArticleCount.builder()
                 .articleId(articleId)
-                .count(0)
+                .count(1)
                 .build();
     }
 

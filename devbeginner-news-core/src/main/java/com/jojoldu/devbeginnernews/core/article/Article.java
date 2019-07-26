@@ -67,4 +67,5 @@ public class Article extends BaseTimeEntity {
     private long toMilliseconds(LocalDateTime registrationDateTime) {
         return ZonedDateTime.of(registrationDateTime, ZoneId.systemDefault()).toInstant().toEpochMilli();
     }
+
 }
