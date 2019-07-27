@@ -48,7 +48,7 @@ public class Article extends BaseTimeEntity {
     @Column(nullable = false, length = 50)
     private ArticleType articleType;
 
-    @Column(nullable = false, length = 1000)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
     @Column(length = 1000)

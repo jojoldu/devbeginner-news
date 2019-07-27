@@ -13,6 +13,7 @@ import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManagerFactory;
 
@@ -53,20 +54,33 @@ public class FacebookFeedBatchConfiguration {
         return stepBuilderFactory.get("saveArticleStep")
                 .tasklet((contribution, chunkContext) -> {
                     String pageId = jobParameter.getPageId();
-                    FacebookFeedCollection feedCollection = facebookRestTemplate.posts(pageId, jobParameter.getPageToken());
+                    FacebookFeedCollection feedCollection = facebookRestTemplate.feed(pageId, jobParameter.getPageToken());
                     articleRepository.saveAll(feedCollection.toArticles(pageId));
 
-                    streamFeed(pageId, feedCollection);
+                    streamFeed(pageId, feedCollection.getNextUrl());
 
                     return RepeatStatus.FINISHED;
                 })
                 .build();
     }
 
-    private void streamFeed(String pageId, FacebookFeedCollection feedCollection) {
-        while (!feedCollection.emptyNext()) {
-            FacebookFeedCollection next = facebookRestTemplate.posts(feedCollection.getNextUrl());
+    private void streamFeed(String pageId, String url) {
+        if(StringUtils.isEmpty(url)) {
+            return;
+        }
+
+        String nextUrl = url;
+        while (true) {
+            FacebookFeedCollection next = facebookRestTemplate.feed(nextUrl);
             articleRepository.saveAll(next.toArticles(pageId));
+            nextUrl = next.getNextUrl();
+
+            log.info(">>>>>>>> Last Feed Time= {}", next.getLastFeedTime());
+            log.info(">>>>>>>> Next Url= {}", nextUrl);
+
+            if(next.emptyNext()) {
+                break;
+            }
         }
     }
 

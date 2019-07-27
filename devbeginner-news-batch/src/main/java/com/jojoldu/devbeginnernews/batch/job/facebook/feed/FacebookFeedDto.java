@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -31,6 +32,10 @@ public class FacebookFeedDto {
         this.id = id;
         this.message = message;
         this.createdTime = createdTime;
+    }
+
+    public boolean isNotEmpty() {
+        return !StringUtils.isEmpty(message);
     }
 
     public LocalDateTime getCreatedTime() {

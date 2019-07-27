@@ -8,7 +8,6 @@ import com.jojoldu.devbeginnernews.core.article.ArticleRepository;
 import com.jojoldu.devbeginnernews.core.article.facebook.ArticleFacebook;
 import com.jojoldu.devbeginnernews.core.article.facebook.ArticleFacebookRepository;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.batch.core.BatchStatus;
@@ -62,7 +61,7 @@ public class FacebookFeedBatchConfigurationMockTest {
                 .build();
         FacebookFeedCollection apiResponse = new FacebookFeedCollection(Arrays.asList(feedDto), new FacebookPagingDto());
 
-        given(facebookRestTemplate.posts(anyString(), anyString()))
+        given(facebookRestTemplate.feed(anyString(), anyString()))
                 .willReturn(apiResponse);
 
         //when

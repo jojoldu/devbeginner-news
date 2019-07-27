@@ -5,8 +5,10 @@ import com.jojoldu.devbeginnernews.batch.job.facebook.FacebookPagingDto;
 import com.jojoldu.devbeginnernews.core.article.Article;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,6 +24,13 @@ public class FacebookFeedCollection {
         this.paging = paging;
     }
 
+    public LocalDateTime getLastFeedTime() {
+        if(CollectionUtils.isEmpty(data)) {
+            return null;
+        }
+        return data.get(data.size() - 1).getCreatedTime();
+    }
+
     public boolean emptyNext() {
         return StringUtils.isEmpty(paging.getNext());
     }
@@ -32,6 +41,7 @@ public class FacebookFeedCollection {
 
     public List<Article> toArticles(String pageId) {
         return data.stream()
+                .filter(FacebookFeedDto::isNotEmpty)
                 .map(d -> d.toArticle(pageId))
                 .collect(Collectors.toList());
     }

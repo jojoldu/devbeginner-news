@@ -6,7 +6,7 @@
         <div class="container">
             <div class="header-data">
                 <div class="logo">
-                    <a href="/" title=""><img src="images/logo.png" alt=""></a>
+                    <a href="/" title=""><img src="/images/logo.png" alt=""></a>
                 </div><!--logo end-->
                 <div class="search-bar">
                     <form>
@@ -35,11 +35,12 @@
                 </div><!--menu-btn end-->
                 <div class="user-account">
                     <div class="user-info">
-                        <a href="javascript:;" title="userName">userName</a>
+                        <a href="javascript:;" title="userName">user</a>
                         <i class="la la-sort-down"></i>
                     </div>
                     <div class="user-account-settingss">
-                        <h3 class="tc"><a href="/logout" title="">Logout</a></h3>
+                        <h4>Setting</h4>
+                        <h4 class="tc"><a href="/logout" title="">Logout</a></h4>
                     </div><!--user-account-settingss end-->
                 </div>
             </div><!--header-data end-->
@@ -58,23 +59,16 @@
                                 </div><!--filter-heading end-->
                                 <div class="paddy">
                                     <div class="filter-dd">
-                                        <div class="filter-ttl">
-                                            <h3>Category</h3>
-                                            <a href="javascript:;" title=""></a>
-                                        </div>
                                         <form class="job-tp">
                                             <label>
-                                                <select>
-                                                    <option>Select a news type</option>
+                                                <select id="typeBtn">
+                                                    <option value="none">Select a news type</option>
+                                                    {{#types}}
+                                                    <option value="{{id}}">{{title}}</option>
+                                                    {{/types}}
                                                 </select>
                                             </label>
-                                            <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                                         </form>
-                                    </div>
-                                    <div class="filter-dd">
-                                        <div class="filter-ttl">
-                                            <h3>구글광고</h3>
-                                        </div>
                                     </div>
                                 </div>
                             </div><!--filter-secs end-->
@@ -86,10 +80,8 @@
                                     <div class="post-bar">
                                         <div class="post_topbar">
                                             <div class="usy-dt">
-                                                <img src="http://via.placeholder.com/50x50" alt="">
                                                 <div class="usy-name">
-                                                    <h3>John Doe</h3>
-                                                    <span><img src="images/clock.png" alt="">3 min ago</span>
+                                                    <span><img src="/images/clock.png" alt="">3 min ago</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -102,8 +94,6 @@
                                                 <li><a href="#" title="">HTML</a></li>
                                                 <li><a href="#" title="">PHP</a></li>
                                                 <li><a href="#" title="">CSS</a></li>
-                                                <li><a href="#" title="">Javascript</a></li>
-                                                <li><a href="#" title="">Wordpress</a></li>
                                             </ul>
                                         </div>
                                         <div class="job-status-bar">

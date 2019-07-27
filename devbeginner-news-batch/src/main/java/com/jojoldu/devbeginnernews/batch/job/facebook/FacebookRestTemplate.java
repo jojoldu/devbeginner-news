@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 @Slf4j
@@ -14,12 +15,12 @@ import org.springframework.web.client.RestTemplate;
 public class FacebookRestTemplate {
     private final RestTemplate restTemplate;
 
-    public FacebookFeedCollection posts (String pageId, String pageToken) {
-        final String URL = String.format("https://graph.facebook.com/v3.3/%s/posts?access_token=%s&limit=100", pageId, pageToken);
-        return posts(URL);
+    public FacebookFeedCollection feed(String pageId, String pageToken) {
+        final String URL = String.format("https://graph.facebook.com/v3.3/%s/feed?limit=100&access_token=%s", pageId, pageToken);
+        return feed(URL);
     }
 
-    public FacebookFeedCollection posts (String url) {
+    public FacebookFeedCollection feed(String url) {
         try {
             ResponseEntity<FacebookFeedCollection> responseEntity = restTemplate.getForEntity(url, FacebookFeedCollection.class);
             HttpStatus statusCode = responseEntity.getStatusCode();
@@ -29,9 +30,9 @@ public class FacebookRestTemplate {
             }
 
             return responseEntity.getBody();
-        } catch (Exception e) {
-            log.error("페이스북 posts API 요청 실패", e);
-            throw e;
+        } catch (HttpClientErrorException hce) {
+            log.error("페이스북 posts API 요청 실패 statusCode={}, body={}", hce.getStatusCode(), hce.getResponseBodyAsString(), hce);
+            throw hce;
         }
     }
 

@@ -1,4 +1,4 @@
-package com.jojoldu.devbeginnernews.batch.config;
+package com.jojoldu.devbeginnernews.web.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
