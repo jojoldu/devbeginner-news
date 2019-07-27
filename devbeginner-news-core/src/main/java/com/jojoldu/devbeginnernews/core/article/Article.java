@@ -1,11 +1,13 @@
 package com.jojoldu.devbeginnernews.core.article;
 
+import com.jojoldu.devbeginnernews.core.article.facebook.ArticleFacebook;
 import com.jojoldu.devbeginnernews.core.common.BaseTimeEntity;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,12 +16,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.temporal.TemporalField;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -53,6 +58,9 @@ public class Article extends BaseTimeEntity {
     private LocalDate registrationDate;
     private long descIndex;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "article")
+    private List<ArticleFacebook> facebooks = new ArrayList<>();
+
     @Builder
     public Article(String title, ArticleType articleType, String content, String link, LocalDateTime registrationDateTime) {
         this.title = title;
@@ -66,6 +74,14 @@ public class Article extends BaseTimeEntity {
 
     private long toMilliseconds(LocalDateTime registrationDateTime) {
         return ZonedDateTime.of(registrationDateTime, ZoneId.systemDefault()).toInstant().toEpochMilli();
+    }
+
+    /**
+     * 1:1 관계지만 Lazy Loading을 위해 OneToMany
+     */
+    public void setFacebook (ArticleFacebook facebook) {
+        facebooks.add(facebook);
+        facebook.setArticle(this);
     }
 
 }
