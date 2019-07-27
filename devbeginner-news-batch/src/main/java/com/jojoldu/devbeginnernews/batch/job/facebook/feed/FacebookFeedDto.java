@@ -45,11 +45,21 @@ public class FacebookFeedDto {
     }
 
     public String parseLink() {
-        return HTTP + message.split(HTTP)[1];
+        String[] strings = message.split(HTTP);
+        if(strings.length == 1) {
+            return "";
+        }
+
+        return HTTP + strings[1];
     }
 
     public String parseTitle() {
-        return message.split("\\\\n")[0];
+        String title = message.split("\n")[0];
+        if(title.length() > 200) {
+            return title.substring(199);
+        }
+
+        return title;
     }
 
     public Article toArticle(String pageId) {

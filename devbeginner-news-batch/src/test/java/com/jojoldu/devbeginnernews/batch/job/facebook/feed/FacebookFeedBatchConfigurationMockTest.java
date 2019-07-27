@@ -5,6 +5,8 @@ import com.jojoldu.devbeginnernews.batch.job.facebook.FacebookPagingDto;
 import com.jojoldu.devbeginnernews.batch.job.facebook.FacebookRestTemplate;
 import com.jojoldu.devbeginnernews.core.article.Article;
 import com.jojoldu.devbeginnernews.core.article.ArticleRepository;
+import com.jojoldu.devbeginnernews.core.article.facebook.ArticleFacebook;
+import com.jojoldu.devbeginnernews.core.article.facebook.ArticleFacebookRepository;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,6 +40,9 @@ public class FacebookFeedBatchConfigurationMockTest {
 
     @Autowired
     private ArticleRepository articleRepository;
+
+    @Autowired
+    private ArticleFacebookRepository articleFacebookRepository;
 
     @MockBean
     private FacebookRestTemplate facebookRestTemplate;
@@ -76,6 +81,9 @@ public class FacebookFeedBatchConfigurationMockTest {
         Article actual = articles.get(0);
         assertThat(actual.getRegistrationDateTime()).isEqualTo(LocalDateTime.of(2019,7,26,9,27,8));
         assertThat(actual.getRegistrationDate()).isEqualTo(LocalDate.of(2019,7,26));
+
+        List<ArticleFacebook> articleFacebooks = articleFacebookRepository.findAll();
+        assertThat(articleFacebooks.size()).isEqualTo(1);
 
     }
 }

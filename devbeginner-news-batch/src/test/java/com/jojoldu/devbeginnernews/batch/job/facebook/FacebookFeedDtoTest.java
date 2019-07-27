@@ -47,7 +47,7 @@ public class FacebookFeedDtoTest {
         String expected = "https://jojoldu.tistory.com/419";
 
         FacebookFeedDto dto = FacebookFeedDto.builder()
-                .message("팀 게임 즉, 회사에서 팀 단위로 일을 하다보면 \\\"에이스가 아닌 역할\\\"에 집중할때가 있습니다.\\n\\n팀을 위해 주요한 역할을 양보한다고 볼수도 있겠습니다만,\\n개인으로 봤을때 그게 도움이 될까요?\\n\\n좋은 팀에 있다고 해서 실력있는 개발자가 아닐 수 있습니다.\\n\\n이번에 그 이야기를 한번 적어보았습니다.\\n\\n출근길에 가볍게 한번 봐주세요 :)\\n\\nhttps://jojoldu.tistory.com/419")
+                .message("팀 게임 즉, 회사에서 팀 단위로 일을 하다보면 \\\"에이스가 아닌 역할\\\"에 집중할때가 있습니다.\n\n팀을 위해 주요한 역할을 양보한다고 볼수도 있겠습니다만,\n개인으로 봤을때 그게 도움이 될까요?\n\n좋은 팀에 있다고 해서 실력있는 개발자가 아닐 수 있습니다.\n\n이번에 그 이야기를 한번 적어보았습니다.\n\n출근길에 가볍게 한번 봐주세요 :)\n\nhttps://jojoldu.tistory.com/419")
                 .build();
         //when
         String link = dto.parseLink();
@@ -59,10 +59,10 @@ public class FacebookFeedDtoTest {
     @Test
     public void Content가_파싱된다() {
         //given
-        String expected = "팀 게임 즉, 회사에서 팀 단위로 일을 하다보면 \\\"에이스가 아닌 역할\\\"에 집중할때가 있습니다.\\n\\n팀을 위해 주요한 역할을 양보한다고 볼수도 있겠습니다만,\\n개인으로 봤을때 그게 도움이 될까요?\\n\\n좋은 팀에 있다고 해서 실력있는 개발자가 아닐 수 있습니다.\\n\\n이번에 그 이야기를 한번 적어보았습니다.\\n\\n출근길에 가볍게 한번 봐주세요 :)\\n\\n";
+        String expected = "팀 게임 즉, 회사에서 팀 단위로 일을 하다보면 \\\"에이스가 아닌 역할\\\"에 집중할때가 있습니다.\n\n팀을 위해 주요한 역할을 양보한다고 볼수도 있겠습니다만,\n개인으로 봤을때 그게 도움이 될까요?\n\n좋은 팀에 있다고 해서 실력있는 개발자가 아닐 수 있습니다.\n\n이번에 그 이야기를 한번 적어보았습니다.\n\n출근길에 가볍게 한번 봐주세요 :)\n\n";
 
         FacebookFeedDto dto = FacebookFeedDto.builder()
-                .message("팀 게임 즉, 회사에서 팀 단위로 일을 하다보면 \\\"에이스가 아닌 역할\\\"에 집중할때가 있습니다.\\n\\n팀을 위해 주요한 역할을 양보한다고 볼수도 있겠습니다만,\\n개인으로 봤을때 그게 도움이 될까요?\\n\\n좋은 팀에 있다고 해서 실력있는 개발자가 아닐 수 있습니다.\\n\\n이번에 그 이야기를 한번 적어보았습니다.\\n\\n출근길에 가볍게 한번 봐주세요 :)\\n\\nhttps://jojoldu.tistory.com/419")
+                .message("팀 게임 즉, 회사에서 팀 단위로 일을 하다보면 \\\"에이스가 아닌 역할\\\"에 집중할때가 있습니다.\n\n팀을 위해 주요한 역할을 양보한다고 볼수도 있겠습니다만,\n개인으로 봤을때 그게 도움이 될까요?\n\n좋은 팀에 있다고 해서 실력있는 개발자가 아닐 수 있습니다.\n\n이번에 그 이야기를 한번 적어보았습니다.\n\n출근길에 가볍게 한번 봐주세요 :)\n\nhttps://jojoldu.tistory.com/419")
                 .build();
         //when
         String content = dto.parseContent();
@@ -77,7 +77,7 @@ public class FacebookFeedDtoTest {
         String expected = "팀 게임 즉, 회사에서 팀 단위로 일을 하다보면 \\\"에이스가 아닌 역할\\\"에 집중할때가 있습니다.";
 
         FacebookFeedDto dto = FacebookFeedDto.builder()
-                .message("팀 게임 즉, 회사에서 팀 단위로 일을 하다보면 \\\"에이스가 아닌 역할\\\"에 집중할때가 있습니다.\\n\\n팀을 위해 주요한 역할을 양보한다고 볼수도 있겠습니다만,\\n개인으로 봤을때 그게 도움이 될까요?\\n\\n좋은 팀에 있다고 해서 실력있는 개발자가 아닐 수 있습니다.\\n\\n이번에 그 이야기를 한번 적어보았습니다.\\n\\n출근길에 가볍게 한번 봐주세요 :)\\n\\nhttps://jojoldu.tistory.com/419")
+                .message("팀 게임 즉, 회사에서 팀 단위로 일을 하다보면 \\\"에이스가 아닌 역할\\\"에 집중할때가 있습니다.\n\n팀을 위해 주요한 역할을 양보한다고 볼수도 있겠습니다만,\n개인으로 봤을때 그게 도움이 될까요?\n\n좋은 팀에 있다고 해서 실력있는 개발자가 아닐 수 있습니다.\n\n이번에 그 이야기를 한번 적어보았습니다.\n\n출근길에 가볍게 한번 봐주세요 :)\n\nhttps://jojoldu.tistory.com/419")
                 .build();
         //when
         String title = dto.parseTitle();

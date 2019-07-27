@@ -15,7 +15,7 @@ public class FacebookRestTemplate {
     private final RestTemplate restTemplate;
 
     public FacebookFeedCollection posts (String pageId, String pageToken) {
-        final String URL = String.format("https://graph.facebook.com/v3.3/%s/posts?access_token=%s", pageId, pageToken);
+        final String URL = String.format("https://graph.facebook.com/v3.3/%s/posts?access_token=%s&limit=100", pageId, pageToken);
         return posts(URL);
     }
 
