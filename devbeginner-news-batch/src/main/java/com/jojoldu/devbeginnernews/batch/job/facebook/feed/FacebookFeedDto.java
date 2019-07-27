@@ -2,6 +2,7 @@ package com.jojoldu.devbeginnernews.batch.job.facebook.feed;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.jojoldu.devbeginnernews.core.article.Article;
+import com.jojoldu.devbeginnernews.core.article.ArticleType;
 import com.jojoldu.devbeginnernews.core.article.facebook.ArticleFacebook;
 import lombok.Builder;
 import lombok.Getter;
@@ -39,19 +40,25 @@ public class FacebookFeedDto {
         return kstZoned.toLocalDateTime();
     }
 
-    public String getContent() {
+    public String parseContent() {
         return message.split(HTTP)[0];
     }
 
-    public String getLink () {
+    public String parseLink() {
         return HTTP + message.split(HTTP)[1];
+    }
+
+    public String parseTitle() {
+        return message.split("\\\\n")[0];
     }
 
     public Article toArticle(String pageId) {
         Article article = Article.builder()
                 .registrationDateTime(getCreatedTime())
-                .content(getContent())
-                .link(getLink())
+                .content(parseContent())
+                .link(parseLink())
+                .articleType(ArticleType.ETC)
+                .title(parseTitle())
                 .build();
         article.setFacebook(toArticleFacebook(pageId));
         return article;

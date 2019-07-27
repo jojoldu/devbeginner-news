@@ -18,6 +18,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -71,6 +73,9 @@ public class FacebookFeedBatchConfigurationMockTest {
         assertThat(jobExecution.getStatus()).isEqualTo(BatchStatus.COMPLETED);
         List<Article> articles = articleRepository.findAll();
         assertThat(articles.size()).isEqualTo(1);
+        Article actual = articles.get(0);
+        assertThat(actual.getRegistrationDateTime()).isEqualTo(LocalDateTime.of(2019,7,26,9,27,8));
+        assertThat(actual.getRegistrationDate()).isEqualTo(LocalDate.of(2019,7,26));
 
     }
 }
