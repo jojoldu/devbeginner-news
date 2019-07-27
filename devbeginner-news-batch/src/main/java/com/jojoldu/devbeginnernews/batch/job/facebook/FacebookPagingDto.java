@@ -1,4 +1,4 @@
-package com.jojoldu.devbeginnernews.batch.job.collect.dto;
+package com.jojoldu.devbeginnernews.batch.job.facebook;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
@@ -9,4 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class FacebookPagingDto {
     private String next;
+
+    public FacebookPagingDto(String next) {
+        this.next = next;
+    }
 }

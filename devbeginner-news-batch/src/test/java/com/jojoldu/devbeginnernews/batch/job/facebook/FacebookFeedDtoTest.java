@@ -1,5 +1,6 @@
-package com.jojoldu.devbeginnernews.batch.job.collect.dto;
+package com.jojoldu.devbeginnernews.batch.job.facebook;
 
+import com.jojoldu.devbeginnernews.batch.job.facebook.feed.FacebookFeedDto;
 import org.junit.Test;
 
 import java.io.IOException;

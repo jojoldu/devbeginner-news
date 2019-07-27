@@ -1,6 +1,6 @@
-package com.jojoldu.devbeginnernews.batch.job.collect;
+package com.jojoldu.devbeginnernews.batch.job.facebook;
 
-import com.jojoldu.devbeginnernews.batch.job.collect.dto.FacebookFeedCollection;
+import com.jojoldu.devbeginnernews.batch.job.facebook.feed.FacebookFeedCollection;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

@@ -1,1 +1,53 @@
+spring:
+  profiles:
+    active: local
+  batch.job.names: ${job.name:NONE}
 
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate.dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+      hibernate.hbm2ddl.import_files_sql_extractor: org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
+      hibernate.default_batch_fetch_size: ${chunkSize:1000}
+    open-in-view: false
+
+  datasource:
+    hikari:
+      connectionTimeout: 10000
+      maximumPoolSize: 10
+      data-source-properties:
+        connectTimeout: 10000
+        socketTimeout: 60000
+
+logging.level:
+  com.woowabros: debug
+  org.hibernate.SQL: debug
+  org.springframework.batch.item.database.JpaItemWriter: debug
+  org.springframework.jdbc.core.JdbcTemplate: info
+
+---
+spring:
+  profiles: local
+
+  jpa:
+    database-platform: H2
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+---
+spring:
+  profiles: real
+
+  datasource:
+    hikari:
+      driver-class-name: org.mariadb.jdbc.Driver
+      idleTimeout: 600000      #10m
+      maxLifetime: 1800000     #30m
+      minimumIdle: 4
+      maximumPoolSize: 15
+      data-source-properties:
+        connect-timeout: 30000
+        socket-timeout: 60000

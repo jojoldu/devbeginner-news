@@ -2,4 +2,5 @@ dependencies {
     compile project(':devbeginner-news-core')
     compile 'org.springframework.boot:spring-boot-starter-batch'
     compile 'org.springframework.boot:spring-boot-starter-json'
+    compile 'org.springframework.batch:spring-batch-test'
 }

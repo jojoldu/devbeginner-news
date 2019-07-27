@@ -1,8 +1,7 @@
-package com.jojoldu.devbeginnernews.batch.job.collect;
+package com.jojoldu.devbeginnernews.batch.job.facebook.feed;
 
-import com.jojoldu.devbeginnernews.batch.job.collect.dto.FacebookFeedCollection;
+import com.jojoldu.devbeginnernews.batch.job.facebook.FacebookRestTemplate;
 import com.jojoldu.devbeginnernews.core.article.ArticleRepository;
-import com.jojoldu.devbeginnernews.core.article.facebook.ArticleFacebookRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
@@ -20,26 +19,25 @@ import javax.persistence.EntityManagerFactory;
 @Slf4j
 @RequiredArgsConstructor
 @Configuration
-public class CollectFacebookBatchConfiguration {
+public class FacebookFeedBatchConfiguration {
 
-    public static final String JOB_NAME = "collectFacebookBatch";
+    public static final String JOB_NAME = "facebookFeedBatch";
     public static final String BEAN_PREFIX = JOB_NAME + "_";
 
-    private final CollectFacebookJobParameter jobParameter;
+    private final FacebookFeedJobParameter jobParameter;
     private final EntityManagerFactory emf;
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
     private final FacebookRestTemplate facebookRestTemplate;
     private final ArticleRepository articleRepository;
-    private final ArticleFacebookRepository articleFacebookRepository;
 
     @Value("${chunkSize:1000}")
     private int chunkSize;
 
     @Bean
     @JobScope
-    public CollectFacebookJobParameter collectFacebookJobParameter() {
-        return new CollectFacebookJobParameter();
+    public FacebookFeedJobParameter collectFacebookJobParameter() {
+        return new FacebookFeedJobParameter();
     }
 
     @Bean(BEAN_PREFIX + "job")
@@ -70,7 +68,6 @@ public class CollectFacebookBatchConfiguration {
             FacebookFeedCollection next = facebookRestTemplate.posts(feedCollection.getNextUrl());
             articleRepository.saveAll(next.toArticles(pageId));
         }
-
     }
 
 

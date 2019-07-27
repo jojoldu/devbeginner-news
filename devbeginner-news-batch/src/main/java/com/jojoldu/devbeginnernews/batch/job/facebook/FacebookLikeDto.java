@@ -1,15 +1,10 @@
-package com.jojoldu.devbeginnernews.batch.job.collect.dto;
+package com.jojoldu.devbeginnernews.batch.job.facebook;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 
 @ToString
 @JsonIgnoreProperties(ignoreUnknown = true)

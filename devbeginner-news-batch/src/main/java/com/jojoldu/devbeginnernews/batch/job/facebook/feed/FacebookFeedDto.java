@@ -1,4 +1,4 @@
-package com.jojoldu.devbeginnernews.batch.job.collect.dto;
+package com.jojoldu.devbeginnernews.batch.job.facebook.feed;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.jojoldu.devbeginnernews.core.article.Article;

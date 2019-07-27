@@ -1,8 +1,8 @@
-package com.jojoldu.devbeginnernews.batch.job.collect.dto;
+package com.jojoldu.devbeginnernews.batch.job.facebook.feed;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.jojoldu.devbeginnernews.batch.job.facebook.FacebookPagingDto;
 import com.jojoldu.devbeginnernews.core.article.Article;
-import com.jojoldu.devbeginnernews.core.article.facebook.ArticleFacebook;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.util.StringUtils;
