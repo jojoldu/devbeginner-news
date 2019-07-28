@@ -6,6 +6,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.util.CollectionUtils;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -82,6 +83,14 @@ public class Article extends BaseTimeEntity {
     public void setFacebook (ArticleFacebook facebook) {
         facebooks.add(facebook);
         facebook.setArticle(this);
+    }
+
+    public long getLikes() {
+        if(CollectionUtils.isEmpty(facebooks)) {
+            return 0;
+        }
+
+        return facebooks.get(0).getLikes();
     }
 
 }

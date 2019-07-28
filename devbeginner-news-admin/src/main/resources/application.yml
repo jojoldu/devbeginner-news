@@ -10,7 +10,7 @@ spring:
     open-in-view: false
 
 logging:
-  path: logs/devbeginner-news-web/
+  path: logs/devbeginner-news-admin/
 ---
 spring:
   profiles: local
@@ -28,20 +28,4 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-
----
-spring.profiles.include: real-db
-spring:
-  profiles: real
-
-  datasource:
-    hikari:
-      driver-class-name: org.mariadb.jdbc.Driver
-      idleTimeout: 600000      #10m
-      maxLifetime: 1800000     #30m
-      minimumIdle: 4
-      maximumPoolSize: 15
-      data-source-properties:
-        connect-timeout: 30000
-        socket-timeout: 60000
 

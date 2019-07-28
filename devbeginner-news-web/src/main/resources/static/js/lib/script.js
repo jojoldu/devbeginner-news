@@ -207,15 +207,6 @@ $(window).on("load", function() {
         return false;
     });
 
-
-    // ============== Menu Script =============
-
-    $(".menu-btn > a").on("click", function(){
-        $("nav").toggleClass("active");
-        return false;
-    });
-
-
     //  ============ Notifications Open =============
 
     $(".not-box-open").on("click", function(){
@@ -224,8 +215,8 @@ $(window).on("load", function() {
 
     // ============= User Account Setting Open ===========
 
-    $(".user-info").on("click", function(){
-        $(this).next(".user-account-settingss").toggleClass("active");
+    $(".menu-btn").on("click", function(){
+        $(this).next(".user-account-settings").toggleClass("active");
     });
 
     //  ============= FORUM LINKS MOBILE MENU FUNCTION =========

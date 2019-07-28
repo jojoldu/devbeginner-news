@@ -1,11 +1,10 @@
 
 
 @media (max-width: 1200px) {
-	header nav {position: fixed;top: 0;left: 0;width: 200px;height: 100%;background-color: #e44d3a;padding: 25px 20px;opacity: 0;visibility: hidden;z-index: 0}
-	header nav.active {opacity: 1;visibility: visible;z-index: 9999;}
-	header nav ul li {float: left;width: 100%;text-align: left;padding: 0 0 0 0;margin-bottom: 20px;}
-	.menu-btn {display: block;}
-	header nav ul li span {display: inline-block;margin-right: 10px;}
+	/*header nav {position: fixed;top: 0;left: 0;width: 200px;height: 100%;background-color: #e44d3a;padding: 25px 20px;opacity: 0;visibility: hidden;z-index: 0}*/
+	/*header nav.active {opacity: 1;visibility: visible;z-index: 9999;}*/
+	/*header nav ul li {float: left;width: 100%;text-align: left;padding: 0 0 0 0;margin-bottom: 20px;}*/
+	/*header nav ul li span {display: inline-block;margin-right: 10px;}*/
 	.widget-about h3 {font-size: 16px;}
 	.widget-about span {font-size: 13px;}
 	.suggestion-usd {padding: 15px 5px;}
@@ -44,80 +43,78 @@
 
 
 @media (max-width: 991px) {
-	.sgt-text span {font-size: 14px;}
-	main {padding: 20px 0 60px 0;}
-	.user-specs span {font-size: 13px;}
-	.comment_box input {width: 275px;}
-	.job-details {width: auto;}
-	.hr-rate {margin-top: 15px;}
-	.suggestion-usd {padding: 15px 20px;}
-	.right-sidebar {margin-top: 50px;}
-	.companies-info {padding: 30px 0 60px 0;}
-	.pf-gallery ul li {width: auto;}
-	.social_links li a {font-size: 13px;}
-	.footy-sec.mn ul li {margin-bottom: 10px;}
-	.user-pro-img > a {left: 56%;}
-	.no-pd {padding: 0;}
-	.footy-sec ul li {margin-bottom: 10px;}
-	.cm-logo {padding-left: 0;}
-	.signin-pop::before {display: none;}
-	.cmp-info > img {display: none;}
-	.cm-logo {margin-bottom: 0px;}
-	.sign-control {text-align: left;}
-	.sign_in_sec {padding: 0 20px;}
-	.sign-control {padding-left: 20px;padding-right: 0;margin-bottom: 30px;}
-	.login-resources ul li {float: none;width: auto;display: inline-block;margin-right: 10px;}
-	.login-resources ul li a {padding: 13px 15px;}
-	.signin-popup {width: 100%;padding: 0 20px;}
-	.cmp-info {padding: 40px 20px 0 20px;}
-	.signup-tab {margin-top: 0;}
-	.full-pagi {margin-bottom: 20px;}
-	.widget-adver img {width: auto;}
-	.widget-adver {text-align: center;}
-	.widget-adver img {float: none;}
-	.next-prev {margin-bottom: 20px;}
-	.msgs-list {margin-bottom: 30px;}
-	.acc-leftbar .nav-tabs > a i {width: 40px;}
-	.acc-leftbar .nav-tabs > a {font-size: 16px;}
-	.acc-leftbar {margin-bottom: 30px;}
-	.profile-account-setting {margin-bottom: 50px;}
-	.profile-bx-info {margin-bottom: 25px;}
-	.profile-bx-details {margin-bottom: -25px;}
-}
+	/*.sgt-text span {font-size: 14px;}*/
+	/*main {padding: 20px 0 60px 0;}*/
+	/*.user-specs span {font-size: 13px;}*/
+	/*.comment_box input {width: 275px;}*/
+	/*.job-details {width: auto;}*/
+	/*.hr-rate {margin-top: 15px;}*/
+	/*.filter-secs {display: none;}*/
+	/*.suggestion-usd {padding: 15px 20px;}*/
+	/*.right-sidebar {display: none;}*/
+	/*.companies-info {padding: 30px 0 60px 0;}*/
+	/*.pf-gallery ul li {width: auto;}*/
+	/*.social_links li a {font-size: 13px;}*/
+	/*.footy-sec.mn ul li {margin-bottom: 10px;}*/
+	/*.user-pro-img > a {left: 56%;}*/
+	/*.no-pd {padding: 0;}*/
+	/*.footy-sec ul li {margin-bottom: 10px;}*/
+	/*.cm-logo {padding-left: 0;}*/
+	/*.signin-pop::before {display: none;}*/
+	/*.cmp-info > img {display: none;}*/
+	/*.cm-logo {margin-bottom: 0px;}*/
+	/*.sign-control {text-align: left;}*/
+	/*.sign_in_sec {padding: 0 20px;}*/
+	/*.sign-control {padding-left: 20px;padding-right: 0;margin-bottom: 30px;}*/
+	/*.login-resources ul li {float: none;width: auto;display: inline-block;margin-right: 10px;}*/
+	/*.login-resources ul li a {padding: 13px 15px;}*/
+	/*.signin-popup {width: 100%;padding: 0 20px;}*/
+	/*.cmp-info {padding: 40px 20px 0 20px;}*/
+	/*.signup-tab {margin-top: 0;}*/
+	/*.full-pagi {margin-bottom: 20px;}*/
+	/*.widget-adver img {width: auto;}*/
+	/*.widget-adver {text-align: center;}*/
+	/*.widget-adver img {float: none;}*/
+	/*.next-prev {margin-bottom: 20px;}*/
+	/*.msgs-list {margin-bottom: 30px;}*/
+	/*.acc-leftbar .nav-tabs > a i {width: 40px;}*/
+	/*.acc-leftbar .nav-tabs > a {font-size: 16px;}*/
+	/*.acc-leftbar {margin-bottom: 30px;}*/
+	/*.profile-account-setting {margin-bottom: 50px;}*/
+	/*.profile-bx-info {margin-bottom: 25px;}*/
+	/*.profile-bx-details {margin-bottom: -25px;}*/
 
+	/*.login_register {display: none;}*/
+	/*.forum-bar ul {float: right;}*/
+	/*.comment_box input {width: 84%;}*/
+	/*.comment_box {width: 88%;}*/
+	/*.no-pd {padding: 0;}*/
+	/*.sign-in-page {padding: 60px 0;}*/
+	/*.overview-box {width: 100%;}*/
+	/*.close-box {top: -23px;right: 2px;}*/
+	/*.forum-links ul li {margin-right: 20px;}*/
+	/*.forum-links ul li a {font-size: 13px;}*/
+	/*.forum-links-btn {display: block;}*/
+	/*.forum-links {position: fixed;top: 0;left: 0;width: 240px;background-color: #e44d3a;height: 100%;padding: 0 20px;opacity: 0;visibility: hidden;}*/
+	/*.forum-links ul li {float: left;width: 100%;padding: 0;margin-bottom: 20px;}*/
+	/*.forum-links ul li a {color: #fff;font-size: 16px;}*/
+	/*.forum-questions .usr_quest {width: 100%;padding: 0;}*/
+	/*.forum-questions .usr_img {margin-bottom: 15px;}*/
+	/*.page-link {padding: 10px;}*/
+	/*.pvr {padding: 10px;}*/
+	/*.forum-post-view .usr_quest {width: 100%;padding: 0;margin-top: 20px;}*/
+	/*.mf-field input {width: 100%;margin-bottom: 20px;}*/
+	/*.mf-field button {margin-left: 0;margin-bottom: 10px;}*/
+	/*.message-inner-dt > img {margin-bottom: 10px;}*/
 
-@media (max-width: 768px) {
-	.login_register {display: none;}
-	.forum-bar ul {float: right;}
-	.comment_box input {width: 84%;}
-	.comment_box {width: 88%;}
-	.no-pd {padding: 0;}
-	.sign-in-page {padding: 60px 0;}
-	.overview-box {width: 100%;}
-	.close-box {top: -23px;right: 2px;}
-	.forum-links ul li {margin-right: 20px;}
-	.forum-links ul li a {font-size: 13px;}
-	.forum-links-btn {display: block;}
-	.forum-links {position: fixed;top: 0;left: 0;width: 240px;background-color: #e44d3a;height: 100%;padding: 0 20px;opacity: 0;visibility: hidden;}
-	.forum-links ul li {float: left;width: 100%;padding: 0;margin-bottom: 20px;}
-	.forum-links ul li a {color: #fff;font-size: 16px;}
-	.forum-questions .usr_quest {width: 100%;padding: 0;}
-	.forum-questions .usr_img {margin-bottom: 15px;}
-	.page-link {padding: 10px;}
-	.pvr {padding: 10px;}
-	.forum-post-view .usr_quest {width: 100%;padding: 0;margin-top: 20px;}
-	.mf-field input {width: 100%;margin-bottom: 20px;}
-	.mf-field button {margin-left: 0;margin-bottom: 10px;}
-	.message-inner-dt > img {margin-bottom: 10px;}
-}
+	nav { width: 90%; }
+	.filter-secs {display: none;}
+	.right-sidebar {display: none;}
+	.search-bar {display: none;}
 
-
-@media (max-width: 576px) {
 	.signin-pop {margin-bottom: 40px;}
 	.login-resources ul li {margin-bottom: 7px;}
-	.logo {width: 100%;text-align: center;}
-	.logo img {float: none;}
-	.search-bar {width: 100%;}
+	.logo {display: none;}
 	.user-account {float: left;}
 	.cm_img {width: 100%;text-align: center;margin-bottom: 10px;}
 	.cm_img img {float: none;}
@@ -166,7 +163,7 @@
 	.notification-info {width: 100%;padding: 0;margin-top: 15px;}
 	.notification-info h3 {line-height: 18px;}
 	.conversation-box {width: 100%;right: 0;}
-	.user-account-settingss {right: auto;left: 0;}
+	.user-account-settings {right: auto;left: 0;}
 	.login-resources {text-align: left;}
 	.forum-bar ul li:last-child {margin-bottom: 0;}
 	.conversation-box {left: -20px;width: 280px;}

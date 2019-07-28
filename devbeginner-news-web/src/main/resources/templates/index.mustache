@@ -11,37 +11,46 @@
                 <div class="search-bar">
                     <form>
                         <input type="text" name="search" placeholder="Search...">
-                        <button type="submit"><i class="la la-search"></i></button>
+                        <button type="button" href="/search"><i class="la la-search"></i></button>
                     </form>
                 </div><!--search-bar end-->
                 <nav>
                     <ul>
                         <li>
                             <a href="/" title="home">
-                                <span><img src="/images/icon1.png" alt=""></span>
-                                Home
+                                전체
                             </a>
                         </li>
                         <li>
                             <a href="/hot" title="hot">
-                                <span><img src="/images/icon2.png" alt=""></span>
-                                Home
+                                인기
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/recruit" title="recruit">
+                                취업
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/tech" title="tech">
+                                기술
                             </a>
                         </li>
                     </ul>
                 </nav><!--nav end-->
                 <div class="menu-btn">
-                    <a href="#" title=""><i class="fa fa-bars"></i></a>
+                    <a href="javascript:;" title=""><i class="fa fa-bars"></i></a>
                 </div><!--menu-btn end-->
                 <div class="user-account">
-                    <div class="user-info">
-                        <a href="javascript:;" title="userName">user</a>
-                        <i class="la la-sort-down"></i>
-                    </div>
-                    <div class="user-account-settingss">
+<!--                    <div class="user-info">-->
+<!--                        <a href="javascript:;" title="userName">user</a>-->
+<!--                        <i class="la la-sort-down"></i>-->
+<!--                    </div>-->
+                    <div class="user-account-settings">
+                        <h3>이동욱님</h3>
                         <h4>Setting</h4>
                         <h4 class="tc"><a href="/logout" title="">Logout</a></h4>
-                    </div><!--user-account-settingss end-->
+                    </div><!--user-account-settings end-->
                 </div>
             </div><!--header-data end-->
         </div>
@@ -55,19 +64,12 @@
                         <div class="col-lg-3">
                             <div class="filter-secs">
                                 <div class="filter-heading">
-                                    <h3>Filters</h3>
+                                    <h3>인프런광고</h3>
                                 </div><!--filter-heading end-->
                                 <div class="paddy">
                                     <div class="filter-dd">
                                         <form class="job-tp">
-                                            <label>
-                                                <select id="typeBtn">
-                                                    <option value="none">Select a news type</option>
-                                                    {{#types}}
-                                                    <option value="{{id}}">{{title}}</option>
-                                                    {{/types}}
-                                                </select>
-                                            </label>
+
                                         </form>
                                     </div>
                                 </div>
@@ -77,37 +79,36 @@
                         <div class="col-lg-6">
                             <div class="main-ws-sec">
                                 <div class="posts-section">
-                                    <div class="post-bar">
-                                        <div class="post_topbar">
-                                            <div class="usy-dt">
-                                                <div class="usy-name">
-                                                    <span><img src="/images/clock.png" alt="">3 min ago</span>
+                                    {{#articles}}
+                                        <div class="post-bar">
+                                            <div class="post_topbar">
+                                                <div class="usy-dt">
+                                                    <div class="usy-name">
+                                                        <span><img src="/images/clock.png" alt="">{{registrationDateTime}}</span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="job_descp">
-                                            <h3>Senior Wordpress Developer</h3>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam luctus
-                                                hendrerit metus, ut ullamcorper quam finibus at. Etiam id magna sit
-                                                amet... <a href="#" title="">view more</a></p>
-                                            <ul class="skill-tags">
-                                                <li><a href="#" title="">HTML</a></li>
-                                                <li><a href="#" title="">PHP</a></li>
-                                                <li><a href="#" title="">CSS</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="job-status-bar">
-                                            <ul class="like-com">
-                                                <li>
-                                                    <a href="#"><i class="la la-heart"></i> Like 25</a>
-                                                </li>
-                                                <li>
-                                                    <a><i class="la la-eye"></i>Views 50</a>
-                                                </li>
-                                            </ul>
-                                            <a><i class="la la la-bookmark"></i></a>
-                                        </div>
-                                    </div><!--post-bar end-->
+                                            <div class="job_descp">
+                                                <h3>{{limitTitle}}</h3>
+                                                <p>{{limitContent}}... <a href="#" title="">view more</a></p>
+                                                <ul class="skill-tags">
+                                                    <li><a href="#" title="">{{articleTypeName}}</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="job-status-bar">
+                                                <ul class="like-com">
+                                                    <li>
+                                                        <a href="#"><i class="la la-heart"></i> Like {{likes}}</a>
+                                                    </li>
+                                                    <li>
+                                                        <a><i class="la la-eye"></i>Views {{views}}</a>
+                                                    </li>
+                                                </ul>
+                                                <a><i class="la la la-bookmark"></i></a>
+                                            </div>
+                                        </div><!--post-bar end-->
+                                    {{/articles}}
+
                                     <div class="process-comm">
                                         <div class="spinner">
                                             <div class="bounce1"></div>
@@ -130,8 +131,8 @@
                                     <div class="jobs-list">
                                         <div class="job-info">
                                             <div class="job-details">
-                                                <h3>Senior Product Designer</h3>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit..</p>
+                                                <h3>초개모 탑뉴스1</h3>
+                                                <p>이거안되나요..</p>
                                             </div>
                                             <div class="hr-rate">
                                                 <span>2019.07.17</span>

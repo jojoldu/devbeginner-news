@@ -138,7 +138,7 @@ p {
 nav,
 .notification-box.active,
 nav ul li a,
-.user-account-settingss.active,
+.user-account-settings.active,
 .user-info a,
 .suggestion-usd > span i,
 .view-more > a,
@@ -385,10 +385,14 @@ header {
 
 nav {
 	float: left;
-	width: 60%;
-	text-align: right;
+	width: 50%;
 	padding-right: 13px;
 }
+
+nav ul {
+	margin-top:4px;
+}
+
 nav ul li {
 	display: inline-block;
 	text-align: center;
@@ -517,7 +521,7 @@ nav ul li span img {
 }
 nav ul li a {
 	color: #ffffff;
-	font-size: 14px;
+	font-size: 25px;
 }
 nav > ul > li > a:hover {
 	color: #fff;
@@ -537,7 +541,7 @@ nav > ul > li > a:hover {
 	padding: 13px 10px;
 	position: relative;
 }
-.user-account-settingss {
+.user-account-settings {
 	position: absolute;
 	top: 100%;
 	right: 0;
@@ -559,12 +563,12 @@ nav > ul > li > a:hover {
 	opacity: 0;
 	visibility: hidden;
 }
-.user-account-settingss.active {
+.user-account-settings.active {
 	opacity: 1;
 	visibility: visible;
 	z-index: 9999;
 }
-.user-account-settingss > h3 {
+.user-account-settings > h3 {
 	color: #000000;
 	font-size: 16px;
 	font-weight: 600;
@@ -4189,7 +4193,7 @@ a:hover {
 
 .menu-btn {
 	float: right;
-	display: none;
+	margin-bottom:13px;
 }
 .menu-btn a {
 	font-size: 24px;
