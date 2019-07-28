@@ -42,13 +42,7 @@ public class ArticleFacebook extends BaseTimeEntity {
     private Article article;
 
     @Builder(builderMethodName = "byApi", builderClassName = "ByApi")
-    public ArticleFacebook(String pageId, String postsId) {
-        this.pageId = pageId;
-        this.postsId = postsId;
-    }
-
-    @Builder(builderMethodName = "forTest", builderClassName = "ForTest")
-    private ArticleFacebook(String pageId, String postsId, long likes) {
+    public ArticleFacebook(String pageId, String postsId, long likes) {
         this.pageId = pageId;
         this.postsId = postsId;
         this.likes = likes;

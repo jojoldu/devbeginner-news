@@ -1,4 +1,4 @@
-package com.jojoldu.devbeginnernews.batch.job.facebook;
+package com.jojoldu.devbeginnernews.batch.job.facebook.feed.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,23 +12,18 @@ import lombok.ToString;
 @NoArgsConstructor
 public class FacebookLikeDto {
 
-    private String id;
-    private Likes likes;
+    private Summary summary;
 
-    public FacebookLikeDto(String id, Likes likes) {
-        this.id = id;
-        this.likes = likes;
+    public FacebookLikeDto(Summary summary) {
+        this.summary = summary;
     }
 
-    @JsonIgnoreProperties(ignoreUnknown = true)
-    @Getter
-    @NoArgsConstructor
-    public static class Likes {
-        private Summary summary;
+    public FacebookLikeDto(long totalCount) {
+        this.summary = new Summary(totalCount);
+    }
 
-        public Likes(Summary summary) {
-            this.summary = summary;
-        }
+    public long getTotalCount() {
+        return summary.getTotalCount();
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)

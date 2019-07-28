@@ -1,6 +1,7 @@
 package com.jojoldu.devbeginnernews.batch.job.facebook.feed;
 
 import com.jojoldu.devbeginnernews.batch.job.facebook.FacebookRestTemplate;
+import com.jojoldu.devbeginnernews.batch.job.facebook.feed.dto.FacebookFeedCollection;
 import com.jojoldu.devbeginnernews.core.article.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +17,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManagerFactory;
+import java.io.UnsupportedEncodingException;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -64,7 +66,7 @@ public class FacebookFeedBatchConfiguration {
                 .build();
     }
 
-    private void streamFeed(String pageId, String url) {
+    private void streamFeed(String pageId, String url) throws UnsupportedEncodingException {
         if(StringUtils.isEmpty(url)) {
             return;
         }

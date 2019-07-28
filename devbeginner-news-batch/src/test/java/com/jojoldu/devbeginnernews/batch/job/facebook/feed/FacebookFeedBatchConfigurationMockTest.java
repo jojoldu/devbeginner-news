@@ -3,6 +3,8 @@ package com.jojoldu.devbeginnernews.batch.job.facebook.feed;
 import com.jojoldu.devbeginnernews.batch.JobTestUtils;
 import com.jojoldu.devbeginnernews.batch.job.facebook.FacebookPagingDto;
 import com.jojoldu.devbeginnernews.batch.job.facebook.FacebookRestTemplate;
+import com.jojoldu.devbeginnernews.batch.job.facebook.feed.dto.FacebookFeedCollection;
+import com.jojoldu.devbeginnernews.batch.job.facebook.feed.dto.FacebookFeedDto;
 import com.jojoldu.devbeginnernews.core.article.Article;
 import com.jojoldu.devbeginnernews.core.article.ArticleRepository;
 import com.jojoldu.devbeginnernews.core.article.facebook.ArticleFacebook;

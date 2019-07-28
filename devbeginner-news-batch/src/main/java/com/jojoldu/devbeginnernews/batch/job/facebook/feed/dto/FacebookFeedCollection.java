@@ -1,4 +1,4 @@
-package com.jojoldu.devbeginnernews.batch.job.facebook.feed;
+package com.jojoldu.devbeginnernews.batch.job.facebook.feed.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.jojoldu.devbeginnernews.batch.job.facebook.FacebookPagingDto;
@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,15 +30,19 @@ public class FacebookFeedCollection {
         if(CollectionUtils.isEmpty(data)) {
             return null;
         }
-        return data.get(data.size() - 1).getCreatedTime();
+        return data.get(data.size() - 1).parseCreatedTime();
     }
 
     public boolean emptyNext() {
         return StringUtils.isEmpty(paging.getNext());
     }
 
-    public String getNextUrl() {
-        return paging.getNext();
+    public String getNextUrl() throws UnsupportedEncodingException {
+        if(StringUtils.isEmpty(paging.getNext())) {
+            return "";
+        }
+
+        return URLDecoder.decode(paging.getNext(), "UTF-8");
     }
 
     public List<Article> toArticles(String pageId) {

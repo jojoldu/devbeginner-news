@@ -1,4 +1,4 @@
-package com.jojoldu.devbeginnernews.batch.job.facebook.feed;
+package com.jojoldu.devbeginnernews.batch.job.facebook.feed.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.jojoldu.devbeginnernews.core.article.Article;
@@ -20,42 +20,49 @@ import java.time.format.DateTimeFormatter;
 @NoArgsConstructor
 public class FacebookFeedDto {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ");
-    private static final String HTTP = "http";
 
     private String id;
     private String message;
     @JsonProperty("created_time")
     private String createdTime;
+    private FacebookLikeDto likes;
+    private FacebookAttachmentsDto attachments;
 
     @Builder
-    public FacebookFeedDto(String id, String message, String createdTime) {
+    public FacebookFeedDto(String id, String message, String createdTime, FacebookLikeDto likes, FacebookAttachmentsDto attachments) {
         this.id = id;
         this.message = message;
         this.createdTime = createdTime;
+        this.likes = likes;
+        this.attachments = attachments;
+    }
+
+    @Builder(builderMethodName = "forTest", builderClassName = "ForTest")
+    public FacebookFeedDto(String id, String message, String createdTime, long totalCount, String url) {
+        this.id = id;
+        this.message = message;
+        this.createdTime = createdTime;
+        this.likes = new FacebookLikeDto(totalCount);
+        this.attachments = new FacebookAttachmentsDto(url);
     }
 
     public boolean isNotEmpty() {
         return !StringUtils.isEmpty(message);
     }
 
-    public LocalDateTime getCreatedTime() {
+    public LocalDateTime parseCreatedTime() {
         ZonedDateTime zonedDateTime = ZonedDateTime.parse(createdTime, FORMATTER);
         ZoneId kstZone = ZoneId.of("Asia/Seoul");
         ZonedDateTime kstZoned = zonedDateTime.withZoneSameInstant(kstZone);
         return kstZoned.toLocalDateTime();
     }
 
-    public String parseContent() {
-        return message.split(HTTP)[0];
-    }
-
-    public String parseLink() {
-        String[] strings = message.split(HTTP);
-        if(strings.length == 1) {
+    public String parseUrl() {
+        if(attachments == null) {
             return "";
         }
 
-        return HTTP + strings[1];
+        return attachments.getUrl();
     }
 
     public String parseTitle() {
@@ -67,11 +74,15 @@ public class FacebookFeedDto {
         return title;
     }
 
+    public long parseLikes() {
+        return likes.getTotalCount();
+    }
+
     public Article toArticle(String pageId) {
         Article article = Article.builder()
-                .registrationDateTime(getCreatedTime())
-                .content(parseContent())
-                .link(parseLink())
+                .registrationDateTime(parseCreatedTime())
+                .content(message)
+                .link(parseUrl())
                 .articleType(ArticleType.ETC)
                 .title(parseTitle())
                 .build();
@@ -83,6 +94,7 @@ public class FacebookFeedDto {
         return ArticleFacebook.byApi()
                 .pageId(pageId)
                 .postsId(id)
+                .likes(parseLikes())
                 .build();
     }
 
