@@ -264,7 +264,10 @@ nav ul li:hover > ul,
 header {
 	float: left;
 	width: 100%;
-	background-color: #53d690;
+	background-color: #28d672;
+
+	/* #53d690;*/
+	/* 레드	#e44d3a*/
 }
 .header-data {
 	float: left;
