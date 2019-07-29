@@ -19,6 +19,7 @@ subprojects {
     apply plugin: 'io.spring.dependency-management'
     apply plugin: 'com.gorylenko.gradle-git-properties'
     apply plugin: 'com.ewerk.gradle.plugins.querydsl'
+    apply plugin: 'eclipse-wtp'
 
     group = "${projectGroup}"
     version = "${projectVersion}"

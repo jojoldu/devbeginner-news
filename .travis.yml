@@ -6,7 +6,6 @@ branches:
   only:
     - master
 
-# Travis CI 서버의 Home
 cache:
   directories:
     - '$HOME/.m2/repository'
@@ -14,7 +13,6 @@ cache:
 
 script: "./gradlew clean build"
 
-# 배포에 필요한 파일들만 archive 에 옮겨서 archive/archive.zip 파일로 만든다.
 before_deploy:
   - mkdir -p archive
   - cp build/libs/*.jar archive/application.jar
@@ -24,15 +22,15 @@ before_deploy:
 
 deploy:
   provider: elasticbeanstalk
-  zip_file: archive.zip # before_deploy에서 이미 archive로 이동한 상태(cd archive)라 현재 위치에서 archive.zip 전송
+  zip_file: archive.zip
   skip_cleanup: true
-  access_key_id: $AWS_ACCESS_KEY # declared in Travis repo settings
+  access_key_id: $AWS_ACCESS_KEY
   secret_access_key:
     secure: $AWS_SECRET_KEY
   region: "ap-northeast-2"
   app: "devbeginner-news"
   env: "devbeginner-news-web"
-  bucket_name: "devbeginner-news-deploy"  # S3 bucket name
+  bucket_name: "devbeginner-news-deploy"
   on:
     branch: master
 
