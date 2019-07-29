@@ -10,10 +10,7 @@ public enum ArticleType implements EnumType {
     RECRUIT ("채용"),
     ESSAY ("에세이"),
     SEMINAR ("세미나"),
-    WEB_FRONT_END ("웹 프론트엔드"),
-    MOBILE ("안드로이드/IOS"),
-    BACK_END ("백엔드"),
-    DEV_OPS ("데브옵스"),
+    TECH ("기술"),
     ETC ("기타");
 
     private final String title;

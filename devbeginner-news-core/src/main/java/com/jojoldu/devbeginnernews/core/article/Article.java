@@ -2,7 +2,6 @@ package com.jojoldu.devbeginnernews.core.article;
 
 import com.jojoldu.devbeginnernews.core.article.facebook.ArticleFacebook;
 import com.jojoldu.devbeginnernews.core.common.BaseTimeEntity;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,7 +22,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.time.temporal.TemporalField;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +45,7 @@ public class Article extends BaseTimeEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 50)
-    private ArticleType articleType;
+    private ArticleDetailType articleType;
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
@@ -63,14 +61,14 @@ public class Article extends BaseTimeEntity {
     private List<ArticleFacebook> facebooks = new ArrayList<>();
 
     @Builder
-    public Article(String title, ArticleType articleType, String content, String link, LocalDateTime registrationDateTime) {
+    public Article(String title, ArticleDetailType articleType, String content, String link, LocalDateTime registrationDateTime) {
         this.title = title;
         this.articleType = articleType;
         this.content = content;
         this.link = link;
         this.registrationDateTime = registrationDateTime;
         this.registrationDate = registrationDateTime.toLocalDate();
-        this.descIndex = toMilliseconds(registrationDateTime);
+        this.descIndex = toMilliseconds(registrationDateTime) * -1;
     }
 
     private long toMilliseconds(LocalDateTime registrationDateTime) {

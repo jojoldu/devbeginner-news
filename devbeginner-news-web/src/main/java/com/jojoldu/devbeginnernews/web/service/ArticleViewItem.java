@@ -6,25 +6,45 @@ import lombok.Getter;
 import static com.jojoldu.devbeginnernews.core.utils.LocalDateTimeUtils.toStringDate;
 
 @Getter
-public class ArticleItemDto {
+public class ArticleViewItem {
     private Long id;
-    private String limitTitle;
-    private String limitContent;
+    private String title;
+    private String content;
     private String articleTypeName;
     private long likes;
-    private long views = 0;
+    private long views;
     private String registrationDateTime;
 
-    public ArticleItemDto(Article article) {
+    public ArticleViewItem(Article article, long views) {
         this.id = article.getId();
-        this.limitTitle = parseTitle(article.getTitle());
-        this.limitContent = parseContent(article.getContent());
+        this.title = article.getTitle();
+        this.content = article.getContent();
         this.articleTypeName = article.getArticleType().getTitle();
         this.likes = article.getLikes();
+        this.views = views;
         this.registrationDateTime = toStringDate(article.getRegistrationDateTime());
     }
 
-    private String parseTitle(String title) {
+    public String getHtmlContent() {
+        String[] texts = content.split("\n");
+        StringBuilder builder = new StringBuilder();
+
+        for (String text : texts) {
+            builder.append(wrapHtmlTag(text));
+        }
+
+        return builder.toString();
+    }
+
+    private String wrapHtmlTag(String text) {
+        if(text.contains("http")) {
+            return String.format("<a target=\"_blank\" href=\"%s\">%s</a>", text, text);
+        }
+
+        return String.format("<p>%s</p>", text);
+    }
+
+    public String getLimitTitle() {
         final int titleLimit = 25;
 
         if(title.length() <= titleLimit) {
@@ -33,7 +53,7 @@ public class ArticleItemDto {
         return title.substring(0, titleLimit);
     }
 
-    private String parseContent(String content) {
+    public String getLimitContent() {
         final int contentLimit = 60;
 
         if(content.length() <= contentLimit) {

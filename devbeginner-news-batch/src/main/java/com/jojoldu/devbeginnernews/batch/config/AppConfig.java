@@ -3,7 +3,7 @@ package com.jojoldu.devbeginnernews.batch.config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.jojoldu.devbeginnernews.core.article.ArticleType;
+import com.jojoldu.devbeginnernews.core.article.ArticleDetailType;
 import com.jojoldu.devbeginnernews.core.common.type.EnumMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -41,7 +41,7 @@ public class AppConfig {
     @Bean
     public EnumMapper enumMapper() {
         EnumMapper enumMapper = new EnumMapper();
-        enumMapper.put(ArticleType.class);
+        enumMapper.put(ArticleDetailType.class);
         return enumMapper;
     }
 }

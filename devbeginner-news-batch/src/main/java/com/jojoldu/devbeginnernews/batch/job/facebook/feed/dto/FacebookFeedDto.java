@@ -2,7 +2,7 @@ package com.jojoldu.devbeginnernews.batch.job.facebook.feed.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.jojoldu.devbeginnernews.core.article.Article;
-import com.jojoldu.devbeginnernews.core.article.ArticleType;
+import com.jojoldu.devbeginnernews.core.article.ArticleDetailType;
 import com.jojoldu.devbeginnernews.core.article.facebook.ArticleFacebook;
 import lombok.Builder;
 import lombok.Getter;
@@ -83,7 +83,7 @@ public class FacebookFeedDto {
                 .registrationDateTime(parseCreatedTime())
                 .content(message)
                 .link(parseUrl())
-                .articleType(ArticleType.ETC)
+                .articleType(ArticleDetailType.ETC)
                 .title(parseTitle())
                 .build();
         article.setFacebook(toArticleFacebook(pageId));

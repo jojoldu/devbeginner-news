@@ -19,6 +19,7 @@ public class ArticleWebRepositoryImpl implements ArticleWebRepositoryCustom{
                 .join(article.facebooks).fetchJoin()
                 .offset(offset)
                 .limit(limit)
+                .orderBy(article.descIndex.asc())
                 .fetch();
     }
 

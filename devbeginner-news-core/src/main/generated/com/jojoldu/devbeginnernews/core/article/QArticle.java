@@ -22,7 +22,7 @@ public class QArticle extends EntityPathBase<Article> {
 
     public final com.jojoldu.devbeginnernews.core.common.QBaseTimeEntity _super = new com.jojoldu.devbeginnernews.core.common.QBaseTimeEntity(this);
 
-    public final EnumPath<ArticleType> articleType = createEnum("articleType", ArticleType.class);
+    public final EnumPath<ArticleDetailType> articleType = createEnum("articleType", ArticleDetailType.class);
 
     public final StringPath content = createString("content");
 

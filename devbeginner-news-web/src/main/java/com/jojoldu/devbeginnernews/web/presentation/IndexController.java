@@ -1,8 +1,7 @@
 package com.jojoldu.devbeginnernews.web.presentation;
 
-import com.jojoldu.devbeginnernews.core.article.ArticleType;
+import com.jojoldu.devbeginnernews.core.article.ArticleDetailType;
 import com.jojoldu.devbeginnernews.core.common.type.EnumMapper;
-import com.jojoldu.devbeginnernews.web.repository.ArticleWebRepository;
 import com.jojoldu.devbeginnernews.web.service.ArticleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +19,7 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("types", enumMapper.getOne(ArticleType.class));
+        model.addAttribute("types", enumMapper.getOne(ArticleDetailType.class));
         model.addAttribute("articles", articleService.findAllLimitDesc(0, 10));
         return "index";
     }
