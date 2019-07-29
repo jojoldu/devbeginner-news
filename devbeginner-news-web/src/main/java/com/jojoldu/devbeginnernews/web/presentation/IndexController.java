@@ -20,7 +20,7 @@ public class IndexController {
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("types", enumMapper.getOne(ArticleDetailType.class));
-        model.addAttribute("articles", articleService.findAllLimitDesc(0, 10));
+        model.addAttribute("articles", articleService.findAllLimitDesc(0, 20));
         return "index";
     }
 }
