@@ -1,4 +1,4 @@
-package com.jojoldu.devbeginnernews.web.service;
+package com.jojoldu.devbeginnernews.web.service.dto;
 
 import com.jojoldu.devbeginnernews.core.article.Article;
 import com.jojoldu.devbeginnernews.core.article.count.ArticleCount;

@@ -1,4 +1,4 @@
-package com.jojoldu.devbeginnernews.web.api.dto;
+package com.jojoldu.devbeginnernews.web.presentation.api.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

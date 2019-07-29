@@ -3,5 +3,6 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-actuator'
     compile 'org.springframework.boot:spring-boot-starter-mustache'
     compile 'org.springframework.boot:spring-boot-starter-web'
-    compile 'org.springframework.boot:spring-boot-devtools'
+    compile 'com.github.jknack:handlebars:4.1.2'
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
 }

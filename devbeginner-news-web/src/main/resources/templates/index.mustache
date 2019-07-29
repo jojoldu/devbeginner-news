@@ -14,44 +14,8 @@
                         <!-- posts start -->
                         <div class="col-lg-6">
                             <div class="main-ws-sec">
-                                <div class="posts-section">
-                                    {{#articles}}
-                                        <div class="post-bar">
-                                            <div class="post_topbar">
-                                                <div class="usy-dt">
-                                                    <div class="usy-name">
-                                                        <span><img src="/images/clock.png" alt="">{{registrationDateTime}}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="job_descp">
-                                                <h3>{{limitTitle}}</h3>
-                                                <p>{{limitContent}}... <a href="/article/{{id}}" title="">view more</a></p>
-                                                <ul class="skill-tags">
-                                                    <li><a href="#" title="">{{articleTypeName}}</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="job-status-bar">
-                                                <ul class="like-com">
-                                                    <li>
-                                                        <a href="#"><i class="la la-heart"></i> Like {{likes}}</a>
-                                                    </li>
-                                                    <li>
-                                                        <a><i class="la la-eye"></i>Views {{views}}</a>
-                                                    </li>
-                                                </ul>
-                                                <a><i class="la la la-bookmark"></i></a>
-                                            </div>
-                                        </div><!--post-bar end-->
-                                    {{/articles}}
-
-                                    <div class="process-comm">
-                                        <div class="spinner">
-                                            <div class="bounce1"></div>
-                                            <div class="bounce2"></div>
-                                            <div class="bounce3"></div>
-                                        </div>
-                                    </div><!--process-comm end-->
+                                <div class="posts-section" id="posts-section">
+                                    {{>articles}}
                                 </div><!--posts-section end-->
                             </div><!--main-ws-sec end-->
                         </div>

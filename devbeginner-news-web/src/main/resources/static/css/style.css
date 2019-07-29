@@ -264,7 +264,7 @@ nav ul li:hover > ul,
 header {
 	float: left;
 	width: 100%;
-	background-color: #e44d3a;
+	background-color: #53d690;
 }
 .header-data {
 	float: left;
@@ -279,6 +279,7 @@ header {
 .logo.pd-btm {
 	padding-bottom: 10px;
 }
+
 .forum-bar {
 	float: left;
 	margin-top: 10px;
@@ -385,6 +386,7 @@ header {
 
 nav {
 	float: left;
+	text-align: right;
 	width: 50%;
 	padding-right: 13px;
 }
@@ -521,7 +523,7 @@ nav ul li span img {
 }
 nav ul li a {
 	color: #ffffff;
-	font-size: 25px;
+	font-size: 20px;
 }
 nav > ul > li > a:hover {
 	color: #fff;
@@ -1425,6 +1427,21 @@ main {
 	display: inline-block;
 	text-transform: capitalize;
 }
+
+.read-more {
+	background-color: #53d690;
+	border-radius: 4px;
+}
+
+.read-more a {
+	display: inline-block;
+	padding: 0 12px;
+	color: #fff;
+	height: 35px;
+	line-height: 35px;
+}
+
+
 .followw {
 	background-color: #53d690;
 }
@@ -4187,6 +4204,19 @@ a:hover {
 	opacity: 0;
 }
 
+/* ============ Undo Btn =============*/
+
+.undo-btn {
+	float: left;
+	margin-bottom:13px;
+}
+.undo-btn a {
+	font-size: 24px;
+	color: #fff;
+	display: inline-block;
+	padding-top: 16px;
+	padding-left: 20px;
+}
 
 
 /* ============ Menu Btn =============*/

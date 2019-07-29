@@ -1,4 +1,4 @@
-package com.jojoldu.devbeginnernews.web.api.dto;
+package com.jojoldu.devbeginnernews.web.presentation.api.dto;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -27,4 +27,5 @@ public class WebResponseDto <T> {
         this.status = status;
         this.data = data;
     }
+
 }

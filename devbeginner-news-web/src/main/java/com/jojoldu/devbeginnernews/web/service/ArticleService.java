@@ -4,6 +4,8 @@ import com.jojoldu.devbeginnernews.core.article.Article;
 import com.jojoldu.devbeginnernews.core.article.count.ArticleCount;
 import com.jojoldu.devbeginnernews.core.article.count.ArticleCountRepository;
 import com.jojoldu.devbeginnernews.web.repository.ArticleWebRepository;
+import com.jojoldu.devbeginnernews.web.service.dto.ArticleViewItem;
+import com.jojoldu.devbeginnernews.web.service.dto.ArticleViewItems;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

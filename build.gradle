@@ -60,5 +60,9 @@ subprojects {
 
     configurations {
         querydsl.extendsFrom compileClasspath
+        developmentOnly
+        runtimeClasspath {
+            extendsFrom developmentOnly
+        }
     }
 }

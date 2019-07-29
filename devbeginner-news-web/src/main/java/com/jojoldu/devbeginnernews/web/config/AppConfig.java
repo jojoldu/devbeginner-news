@@ -5,6 +5,8 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.jojoldu.devbeginnernews.core.article.ArticleDetailType;
 import com.jojoldu.devbeginnernews.core.common.type.EnumMapper;
+import com.jojoldu.devbeginnernews.web.config.handlebars.HandlebarsFactory;
+import com.jojoldu.devbeginnernews.web.config.handlebars.HandlebarsTemplates;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +14,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 import static java.time.Duration.ofSeconds;
 
@@ -43,5 +47,15 @@ public class AppConfig {
         EnumMapper enumMapper = new EnumMapper();
         enumMapper.put(ArticleDetailType.class);
         return enumMapper;
+    }
+
+    @Bean
+    public HandlebarsFactory handlebarsFactory() {
+        HandlebarsFactory handlebarsFactory = new HandlebarsFactory();
+        List<String> files = HandlebarsTemplates.getAllFiles();
+        for (String file : files) {
+            handlebarsFactory.put(file);
+        }
+        return handlebarsFactory;
     }
 }
