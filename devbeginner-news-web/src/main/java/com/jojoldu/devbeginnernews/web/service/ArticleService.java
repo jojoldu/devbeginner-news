@@ -3,6 +3,7 @@ package com.jojoldu.devbeginnernews.web.service;
 import com.jojoldu.devbeginnernews.core.article.Article;
 import com.jojoldu.devbeginnernews.core.article.count.ArticleCount;
 import com.jojoldu.devbeginnernews.core.article.count.ArticleCountRepository;
+import com.jojoldu.devbeginnernews.core.article.facebook.ArticleFacebook;
 import com.jojoldu.devbeginnernews.web.repository.ArticleWebRepository;
 import com.jojoldu.devbeginnernews.web.service.dto.ArticleViewItem;
 import com.jojoldu.devbeginnernews.web.service.dto.ArticleViewItems;
@@ -45,4 +46,12 @@ public class ArticleService {
         return new ArticleViewItem(article, views);
     }
 
+    @Transactional(readOnly = true)
+    public List<ArticleViewItem> findAllMostLikes(long offset, long limit) {
+        List<ArticleFacebook> articleFacebooks = articleWebRepository.findAllMostLikes(offset, limit);
+        List<Article> articles = articleFacebooks.stream().map(ArticleFacebook::getArticle).collect(Collectors.toList());
+        List<ArticleCount> articleCounts = findArticleCounts(articles);
+
+        return new ArticleViewItems(articles, articleCounts).getArticleItems();
+    }
 }

@@ -23,4 +23,12 @@ public class IndexWebController {
         model.addAttribute("offset", offset+1);
         return "index";
     }
+
+    @GetMapping("/hot")
+    public String hot(Model model) {
+        int offset = 0;
+        model.addAttribute("articles", articleService.findAllMostLikes(offset, PAGE_SIZE));
+        model.addAttribute("offset", offset+1);
+        return "hot";
+    }
 }
