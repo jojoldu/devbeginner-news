@@ -9,3 +9,25 @@ dependencies {
     compile 'com.h2database:h2'
     compile 'org.mariadb.jdbc:mariadb-java-client:2.4.2'
 }
+
+apply plugin: 'com.ewerk.gradle.plugins.querydsl'
+
+def querydslSrcDir = 'src/main/generated'
+
+querydsl {
+    library = "com.querydsl:querydsl-apt"
+    jpa = true
+    querydslSourcesDir = querydslSrcDir
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java', querydslSrcDir]
+        }
+    }
+}
+
+compileQuerydsl{
+    options.annotationProcessorPath = configurations.querydsl
+}

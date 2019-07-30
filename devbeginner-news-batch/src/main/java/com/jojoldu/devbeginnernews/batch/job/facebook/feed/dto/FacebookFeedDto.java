@@ -75,6 +75,9 @@ public class FacebookFeedDto {
     }
 
     public long parseLikes() {
+        if(likes == null) {
+            return 0;
+        }
         return likes.getTotalCount();
     }
 
