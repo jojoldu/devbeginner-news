@@ -1,7 +1,7 @@
 
 
 @media (max-width: 1200px) {
-	/*header nav {position: fixed;top: 0;left: 0;width: 200px;height: 100%;background-color: #e44d3a;padding: 25px 20px;opacity: 0;visibility: hidden;z-index: 0}*/
+	/*header nav {position: fixed;top: 0;left: 0;width: 200px;height: 100%;background-color: #4385f5;padding: 25px 20px;opacity: 0;visibility: hidden;z-index: 0}*/
 	/*header nav.active {opacity: 1;visibility: visible;z-index: 9999;}*/
 	/*header nav ul li {float: left;width: 100%;text-align: left;padding: 0 0 0 0;margin-bottom: 20px;}*/
 	/*header nav ul li span {display: inline-block;margin-right: 10px;}*/
@@ -43,10 +43,11 @@
 
 @media (min-width: 991px) {
 	.undo-btn {display: none;}
+	.m-search-btn {display: none;}
 }
 
 @media (max-width: 991px) {
-	nav { width: 90%; }
+	nav { width: 80%; }
 	.filter-secs {display: none;}
 	.right-sidebar {display: none;}
 	.search-bar {display: none;}
@@ -69,7 +70,7 @@
 	.star-descp > ul {width: 100%;margin-top: 10px;}
 	.like-com li {margin-right: 5px;}
 	.bk-links {width: 100%;margin-top: 15px;}
-	main {padding: 20px 0 40px 0}
+	main {padding: 30px 0 40px 0; height: 700px; display:block; overflow:auto;}
 	.bk-links {margin-bottom: 10px;}
 	.star-descp {margin-bottom: 25px;}
 	.like-com li {float: left;width: 100%;margin-bottom: 15px;}
