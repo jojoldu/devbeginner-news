@@ -1,10 +1,4 @@
-
-
 @media (max-width: 1200px) {
-	/*header nav {position: fixed;top: 0;left: 0;width: 200px;height: 100%;background-color: #4385f5;padding: 25px 20px;opacity: 0;visibility: hidden;z-index: 0}*/
-	/*header nav.active {opacity: 1;visibility: visible;z-index: 9999;}*/
-	/*header nav ul li {float: left;width: 100%;text-align: left;padding: 0 0 0 0;margin-bottom: 20px;}*/
-	/*header nav ul li span {display: inline-block;margin-right: 10px;}*/
 	.widget-about h3 {font-size: 16px;}
 	.widget-about span {font-size: 13px;}
 	.suggestion-usd {padding: 15px 5px;}
@@ -57,8 +51,20 @@
 	.logo {display: none;}
 	.user-account {float: left;}
 
-	.signin-pop {margin-bottom: 40px;}
-	.login-resources ul li {margin-bottom: 7px;}
+	/* Login */
+	.cm-logo {padding-left: 0;}
+	.signin-pop::before {display: none;}
+	.cmp-info > img {display: none;}
+	.cm-logo {margin-bottom: 0px;}
+	.sign-control {text-align: left;}
+	.sign_in_sec {padding: 0 20px;}
+	.sign-control {padding-left: 20px;padding-right: 0;margin-bottom: 30px;}
+	.login-resources ul li {float: none;width: auto;display: inline-block;margin-right: 10px;}
+	.login-resources ul li a {padding: 13px 15px;}
+	.signin-popup {width: 100%;padding: 0 20px;}
+	.cmp-info {padding: 40px 20px 0 20px;}
+	.signup-tab {margin-top: 0;}
+
 	.cm_img {width: 100%;text-align: center;margin-bottom: 10px;}
 	.cm_img img {float: none;}
 	.comment_box {width: 100%;}
@@ -110,6 +116,18 @@
 	.login-resources {text-align: left;}
 	.forum-bar ul li:last-child {margin-bottom: 0;}
 	.conversation-box {left: -20px;width: 280px;}
+}
+
+@media (max-width: 768px) {
+	.sign-in-page {
+		padding: 60px 0;
+	}
+}
+
+@media (max-width: 576px) {
+	.signin-pop {
+		margin-bottom: 40px;
+	}
 }
 
 @media (max-width: 410px) {

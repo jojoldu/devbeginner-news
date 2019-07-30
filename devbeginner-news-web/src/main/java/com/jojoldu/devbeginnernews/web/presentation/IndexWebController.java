@@ -31,4 +31,9 @@ public class IndexWebController {
         model.addAttribute("offset", offset+1);
         return "hot";
     }
+
+    @GetMapping("/signin")
+    public String signin (Model model) {
+        return "signin";
+    }
 }
