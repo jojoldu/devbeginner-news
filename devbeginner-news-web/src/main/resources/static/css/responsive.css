@@ -44,10 +44,12 @@
 @media (min-width: 991px) {
 	.undo-btn {display: none;}
 	.m-search-btn {display: none;}
+	.m-category {display: none;}
+	.m-login-btn {display: none;}
 }
 
 @media (max-width: 991px) {
-	nav { width: 80%; }
+	nav { display: none; }
 	.filter-secs {display: none;}
 	.right-sidebar {display: none;}
 	.search-bar {display: none;}
@@ -70,7 +72,7 @@
 	.star-descp > ul {width: 100%;margin-top: 10px;}
 	.like-com li {margin-right: 5px;}
 	.bk-links {width: 100%;margin-top: 15px;}
-	main {padding: 30px 0 40px 0; height: 700px; display:block; overflow:auto;}
+	main {padding: 0 0 40px 0; height: 700px; display:block; overflow:auto;}
 	.bk-links {margin-bottom: 10px;}
 	.star-descp {margin-bottom: 25px;}
 	.like-com li {float: left;width: 100%;margin-bottom: 15px;}

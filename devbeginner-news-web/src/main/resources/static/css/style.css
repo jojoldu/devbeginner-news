@@ -388,6 +388,36 @@ header {
 	font-weight: bold;
 }
 
+/* ========== Mobile Category ========== */
+
+.m-category {
+	background: white;
+	box-shadow: 0 6px 12px 0px #d6dee41f;
+	padding-top: 12px;
+	display: flex;
+	width: 100%;
+	margin-bottom: 2rem;
+}
+
+.m-category-item {
+	display: flex;
+	flex: 1 1;
+	align-items: center;
+	justify-content: center;
+	color: #495057;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	border-bottom: 2px solid transparent;
+	line-height: 1.25rem;
+	font-size: 1.25rem;
+}
+
+.m-category .active {
+	border-bottom: 3px solid #4385f5;
+}
+
+/* ========== PC Category ========== */
+
 nav {
 	float: left;
 	text-align: center;
@@ -4225,6 +4255,7 @@ a:hover {
 .m-search-btn {
 	float: right;
 	margin-bottom:13px;
+	padding-right:40px;
 }
 .m-search-btn a {
 	font-size: 30px;
@@ -4233,6 +4264,19 @@ a:hover {
 	padding-top: 16px;
 }
 
+/* ============ Mobile Login Btn =============*/
+
+.m-login-btn {
+	float: right;
+	margin-bottom:13px;
+}
+
+.m-login-btn a {
+	font-size: 30px;
+	color: #fff;
+	display: inline-block;
+	padding-top: 16px;
+}
 
 /* ============ Menu Btn =============*/
 
