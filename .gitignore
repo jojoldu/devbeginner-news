@@ -9,6 +9,7 @@ logs
 keystore.p12
 sample.json
 facebook.yml
+application-*oauth.yml
 application-real-db.yml
 
 ### STS ###

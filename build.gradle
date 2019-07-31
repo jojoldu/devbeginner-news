@@ -6,7 +6,7 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath "io.spring.gradle:dependency-management-plugin:1.0.6.RELEASE"
+        classpath "io.spring.gradle:dependency-management-plugin:1.0.8.RELEASE"
         classpath "gradle.plugin.com.ewerk.gradle.plugins:querydsl-plugin:1.0.10"
         classpath "gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties:1.4.17"
     }
@@ -20,7 +20,7 @@ subprojects {
     apply plugin: 'com.gorylenko.gradle-git-properties'
 
     group = "${projectGroup}"
-    version = "${projectVersion}"
+    version = "${projectVersion}-"+new Date().format("yyyyMMddHHmmss")
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
 

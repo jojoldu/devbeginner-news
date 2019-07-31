@@ -8,20 +8,22 @@ spring:
       hibernate.hbm2ddl.import_files_sql_extractor: org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
       hibernate.default_batch_fetch_size: ${chunkSize:10000}
     open-in-view: false
+  session:
+    store-type: jdbc
+
 
 logging:
   path: logs/devbeginner-news-web/
 ---
+spring.profiles.include: local-oauth
 spring:
   profiles: local
   devtools:
     livereload:
       enabled: true
   mustache:
-    prefix: file:src/main/resources/templates/
     cache: false
   resources:
-    static-locations: file:src/main/resources/static/
     cache:
       period: 0
   h2:
@@ -35,7 +37,7 @@ spring:
       ddl-auto: update
 
 ---
-spring.profiles.include: real-db
+spring.profiles.include: real-db, local-oauth
 spring:
   profiles: local-real
   devtools:
@@ -59,7 +61,7 @@ spring:
         connect-timeout: 30000
         socket-timeout: 60000
 ---
-spring.profiles.include: real-db
+spring.profiles.include: real-db, real-oauth
 spring:
   profiles: real
 

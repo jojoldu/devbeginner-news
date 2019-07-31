@@ -5,4 +5,8 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'com.github.jknack:handlebars:4.1.2'
     compile 'org.springframework.boot:spring-boot-devtools'
+    compile 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    compile 'org.springframework.session:spring-session-jdbc'
+
+    testCompile 'org.springframework.security:spring-security-test'
 }
