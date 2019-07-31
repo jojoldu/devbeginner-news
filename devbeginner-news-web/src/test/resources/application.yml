@@ -11,11 +11,7 @@ spring:
   session:
     store-type: jdbc
 
-
-logging:
-  path: logs/devbeginner-news-web/
 ---
-spring.profiles.include: local-oauth
 spring:
   profiles: local
   devtools:
@@ -35,5 +31,11 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            clientId: test
+            client-secret: test
 
