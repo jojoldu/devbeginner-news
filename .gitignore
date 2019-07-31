@@ -14,6 +14,9 @@ facebook.yml
 /devbeginner-news-web/src/main/resources/application-real-oauth.yml
 application-real-db.yml
 
+generated
+
+
 ### STS ###
 .apt_generated
 .classpath
