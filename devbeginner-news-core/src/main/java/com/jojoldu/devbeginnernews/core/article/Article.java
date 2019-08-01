@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.util.CollectionUtils;
 
+import javax.annotation.Nonnull;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -61,7 +62,7 @@ public class Article extends BaseTimeEntity {
     private List<ArticleFacebook> facebooks = new ArrayList<>();
 
     @Builder
-    public Article(String title, ArticleDetailType articleType, String content, String link, LocalDateTime registrationDateTime) {
+    public Article(@Nonnull String title, @Nonnull ArticleDetailType articleType, @Nonnull String content, String link, @Nonnull LocalDateTime registrationDateTime) {
         this.title = title;
         this.articleType = articleType;
         this.content = content;

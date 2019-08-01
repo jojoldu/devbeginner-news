@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,10 +49,14 @@ public class ArticleService {
 
     @Transactional(readOnly = true)
     public List<ArticleViewItem> findAllMostLikes(long offset, long limit) {
-        List<ArticleFacebook> articleFacebooks = articleWebRepository.findAllMostLikes(offset, limit);
+        List<ArticleFacebook> articleFacebooks = articleWebRepository.findAllMostLikes(offset, limit, getToday());
         List<Article> articles = articleFacebooks.stream().map(ArticleFacebook::getArticle).collect(Collectors.toList());
         List<ArticleCount> articleCounts = findArticleCounts(articles);
 
         return new ArticleViewItems(articles, articleCounts).getArticleItems();
+    }
+
+    LocalDate getToday() {
+        return LocalDate.now();
     }
 }

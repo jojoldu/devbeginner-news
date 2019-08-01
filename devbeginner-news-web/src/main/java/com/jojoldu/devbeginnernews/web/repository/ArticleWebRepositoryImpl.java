@@ -19,7 +19,7 @@ public class ArticleWebRepositoryImpl implements ArticleWebRepositoryCustom {
     public List<Article> findAllLimitDesc(long offset, long limit) {
         return queryFactory
                 .selectFrom(article)
-                .join(article.facebooks).fetchJoin()
+                .leftJoin(article.facebooks).fetchJoin()
                 .offset(offset)
                 .limit(limit)
                 .orderBy(article.descIndex.asc())
@@ -27,18 +27,16 @@ public class ArticleWebRepositoryImpl implements ArticleWebRepositoryCustom {
     }
 
     @Override
-    public List<ArticleFacebook> findAllMostLikes(long offset, long limit) {
+    public List<ArticleFacebook> findAllMostLikes(long offset, long limit, LocalDate today) {
         return queryFactory
                 .selectFrom(articleFacebook)
                 .join(articleFacebook.article, article).fetchJoin()
-                .where(article.registrationDate.after(getToday().minusYears(1)))
+                .where(article.registrationDate.after(today.minusYears(1)))
                 .offset(offset)
                 .limit(limit)
                 .orderBy(articleFacebook.likes.desc())
                 .fetch();
     }
 
-    LocalDate getToday() {
-        return LocalDate.now();
-    }
+
 }
