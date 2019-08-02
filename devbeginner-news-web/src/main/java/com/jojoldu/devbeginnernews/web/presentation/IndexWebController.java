@@ -32,6 +32,14 @@ public class IndexWebController {
         return "hot";
     }
 
+    @GetMapping("/recommended")
+    public String recommended(Model model) {
+        int offset = 0;
+        model.addAttribute("articles", articleService.findAllMostLikes(offset, PAGE_SIZE));
+        model.addAttribute("offset", offset+1);
+        return "hot";
+    }
+
     @GetMapping("/signin")
     public String signin (Model model) {
         return "signin";
