@@ -15,6 +15,7 @@ script: "./gradlew clean build"
 
 before_deploy:
   - mkdir -p archive
+  - cp devbeginner-news-web/Procfile archive/Procfile
   - cp devbeginner-news-web/build/libs/*.jar archive/application.jar
   - cp -r devbeginner-news-web/.ebextensions archive/.ebextensions
   - cd archive
