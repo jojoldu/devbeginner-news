@@ -19,7 +19,7 @@ before_deploy:
   - cp devbeginner-news-web/build/libs/*.jar archive/application.jar
   - cp -r devbeginner-news-web/.ebextensions archive/.ebextensions
   - cd archive
-  - zip -r archive.zip application.jar .ebextensions
+  - zip -r archive.zip application.jar .ebextensions Procfile
 
 deploy:
   provider: elasticbeanstalk
