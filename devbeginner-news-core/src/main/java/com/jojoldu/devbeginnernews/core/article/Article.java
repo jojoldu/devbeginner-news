@@ -59,7 +59,7 @@ public class Article extends BaseTimeEntity {
     private long descIndex;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "article")
-    private List<ArticleFacebook> facebooks = new ArrayList<>();
+    private List<ArticleFacebook> facebooks = new ArrayList<>(); // oneToOne 이지만 Lazy Loading을 위해 oneToMany
 
     @Builder
     public Article(@Nonnull String title, @Nonnull ArticleDetailType articleType, @Nonnull String content, String link, @Nonnull LocalDateTime registrationDateTime) {
@@ -84,12 +84,30 @@ public class Article extends BaseTimeEntity {
         facebook.setArticle(this);
     }
 
+    public ArticleFacebook getFacebook() {
+        return facebooks.get(0);
+    }
+
+    public String getPostsId() {
+        if(CollectionUtils.isEmpty(facebooks)) {
+            return "";
+        }
+
+        return facebooks.get(0).getPostsId();
+    }
+
     public long getLikes() {
         if(CollectionUtils.isEmpty(facebooks)) {
             return 0;
         }
 
         return facebooks.get(0).getLikes();
+    }
+
+    public void update (String title, String content, long likes) {
+        this.title = title;
+        this.content = content;
+        this.getFacebook().updateLikes(likes);
     }
 
 }

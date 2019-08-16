@@ -7,4 +7,5 @@ import java.util.Optional;
 public interface ArticleFacebookRepository extends JpaRepository <ArticleFacebook, Long> {
 
     Optional<ArticleFacebook> findTopByArticleId(Long articleId);
+    Optional<ArticleFacebook> findByPostsId(String postsId);
 }

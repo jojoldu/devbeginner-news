@@ -2,7 +2,10 @@ package com.jojoldu.devbeginnernews.batch.job.facebook.feed;
 
 import com.jojoldu.devbeginnernews.batch.job.facebook.FacebookRestTemplate;
 import com.jojoldu.devbeginnernews.batch.job.facebook.feed.dto.FacebookFeedCollection;
+import com.jojoldu.devbeginnernews.core.article.Article;
 import com.jojoldu.devbeginnernews.core.article.ArticleRepository;
+import com.jojoldu.devbeginnernews.core.article.facebook.ArticleFacebook;
+import com.jojoldu.devbeginnernews.core.article.facebook.ArticleFacebookRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
@@ -18,6 +21,9 @@ import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManagerFactory;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -33,6 +39,7 @@ public class FacebookFeedBatchConfiguration {
     private final StepBuilderFactory stepBuilderFactory;
     private final FacebookRestTemplate facebookRestTemplate;
     private final ArticleRepository articleRepository;
+    private final ArticleFacebookRepository articleFacebookRepository;
 
     @Value("${chunkSize:1000}")
     private int chunkSize;
@@ -57,7 +64,7 @@ public class FacebookFeedBatchConfiguration {
                 .tasklet((contribution, chunkContext) -> {
                     String pageId = jobParameter.getPageId();
                     FacebookFeedCollection feedCollection = facebookRestTemplate.feed(pageId, jobParameter.getPageToken());
-                    articleRepository.saveAll(feedCollection.toArticles(pageId));
+                    saveOrUpdateArticles(pageId, feedCollection);
 
                     streamFeed(pageId, feedCollection.getNextUrl());
 
@@ -74,7 +81,7 @@ public class FacebookFeedBatchConfiguration {
         String nextUrl = url;
         while (true) {
             FacebookFeedCollection next = facebookRestTemplate.feed(nextUrl);
-            articleRepository.saveAll(next.toArticles(pageId));
+            saveOrUpdateArticles(pageId, next);
             nextUrl = next.getNextUrl();
 
             log.info(">>>>>>>> Last Feed Time= {}", next.getLastFeedTime());
@@ -84,6 +91,24 @@ public class FacebookFeedBatchConfiguration {
                 break;
             }
         }
+    }
+
+    private void saveOrUpdateArticles(String pageId, FacebookFeedCollection feedCollection) {
+        List<Article> newArticles = feedCollection.toArticles(pageId);
+
+        for (Article article : newArticles) {
+            String postsId = article.getPostsId();
+            Optional<ArticleFacebook> existFacebook = articleFacebookRepository.findByPostsId(postsId);
+
+            if(existFacebook.isPresent()) {
+                Article existArticle = existFacebook.get().getArticle();
+                existArticle.update(article.getTitle(), article.getContent(), article.getLikes());
+                articleRepository.save(existArticle);
+            } else {
+                articleRepository.save(article);
+            }
+        }
+
     }
 
 
