@@ -10,7 +10,9 @@ spring:
     open-in-view: false
   session:
     store-type: jdbc
-
+  datasource:
+    hikari:
+      auto-commit: false
 
 logging:
   path: logs/devbeginner-news-web/
