@@ -1,14 +1,16 @@
-buildscript {
+plugins {
+    id 'org.springframework.boot' version '2.2.0.RELEASE' apply false
+    id "io.spring.dependency-management" version "1.0.8.RELEASE"
+    id 'java'
+    id 'groovy'
+    id 'com.gorylenko.gradle-git-properties' version '2.2.0'
+}
+
+allprojects {
     repositories {
         mavenCentral()
         jcenter()
-        maven { url "https://plugins.gradle.org/m2/" }
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath "io.spring.gradle:dependency-management-plugin:1.0.8.RELEASE"
-        classpath "gradle.plugin.com.ewerk.gradle.plugins:querydsl-plugin:1.0.10"
-        classpath "gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties:1.4.17"
+        maven { url 'https://jitpack.io' }
     }
 }
 
@@ -24,25 +26,28 @@ subprojects {
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
 
-    repositories {
-        mavenCentral()
-        jcenter()
-        maven { url 'https://jitpack.io' }
-    }
-
     dependencies {
-        annotationProcessor 'org.projectlombok:lombok:1.18.2'
-        compileOnly 'org.projectlombok:lombok:1.18.2'
-        testCompile 'org.spockframework:spock-core:1.2-groovy-2.4'
-        testCompile 'org.spockframework:spock-spring:1.2-groovy-2.4'
-        testCompile 'org.springframework.boot:spring-boot-starter-test'
+        annotationProcessor 'org.projectlombok:lombok'
+        implementation 'org.projectlombok:lombok'
+        testAnnotationProcessor 'org.projectlombok:lombok'
+        testImplementation 'org.projectlombok:lombok'
+
+        implementation 'org.springframework.boot:spring-boot-starter'
+
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testImplementation 'org.spockframework:spock-core:1.2-groovy-2.4'
+        testImplementation 'org.spockframework:spock-spring:1.2-groovy-2.4'
     }
 
     configurations {
-        querydsl.extendsFrom compileClasspath
-        developmentOnly
-        runtimeClasspath {
-            extendsFrom developmentOnly
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
         }
     }
 }
