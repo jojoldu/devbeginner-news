@@ -55,4 +55,10 @@ public class ArticleFacebook extends BaseTimeEntity {
     public void updateLikes (long count) {
         this.likes = count;
     }
+
+    public Article updateArticle (String title, String content, long likes) {
+        this.article.update(title, content);
+        this.updateLikes(likes);
+        return this.article;
+    }
 }

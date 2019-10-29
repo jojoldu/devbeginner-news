@@ -11,19 +11,30 @@ import org.springframework.util.StringUtils;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static java.net.URLDecoder.decode;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
 @NoArgsConstructor
 public class FacebookFeedCollection {
-    private List<FacebookFeedDto> data;
+    private List<FacebookFeedDto> data = new ArrayList<>();
     private FacebookPagingDto paging;
 
     public FacebookFeedCollection(List<FacebookFeedDto> data, FacebookPagingDto paging) {
         this.data = data;
         this.paging = paging;
+    }
+
+    public int size() {
+        return data.size();
+    }
+
+    public FacebookFeedDto get (int i) {
+        return data.get(i);
     }
 
     public LocalDateTime getLastFeedTime() {
@@ -42,7 +53,7 @@ public class FacebookFeedCollection {
             return "";
         }
 
-        return URLDecoder.decode(paging.getNext(), "UTF-8");
+        return decode(paging.getNext(), "UTF-8");
     }
 
     public List<Article> toArticles(String pageId) {

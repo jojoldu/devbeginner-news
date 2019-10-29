@@ -104,6 +104,11 @@ public class Article extends BaseTimeEntity {
         return facebooks.get(0).getLikes();
     }
 
+    public void update (String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+
     public void update (String title, String content, long likes) {
         this.title = title;
         this.content = content;
