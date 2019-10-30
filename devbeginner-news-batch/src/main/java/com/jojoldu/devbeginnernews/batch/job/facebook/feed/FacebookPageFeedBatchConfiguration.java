@@ -1,5 +1,6 @@
 package com.jojoldu.devbeginnernews.batch.job.facebook.feed;
 
+import com.jojoldu.devbeginnernews.batch.job.facebook.FacebookRestTemplate;
 import com.jojoldu.devbeginnernews.batch.job.facebook.feed.dto.FacebookFeedDto;
 import com.jojoldu.devbeginnernews.core.article.Article;
 import com.jojoldu.devbeginnernews.core.article.facebook.ArticleFacebookRepository;
@@ -16,7 +17,6 @@ import org.springframework.batch.item.database.JpaItemWriter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.client.RestTemplate;
 
 import javax.persistence.EntityManagerFactory;
 
@@ -31,13 +31,13 @@ public class FacebookPageFeedBatchConfiguration {
     private final EntityManagerFactory emf;
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
-    private final RestTemplate restTemplate;
+    private final FacebookRestTemplate facebookRestTemplate;
     private final ArticleFacebookRepository articleFacebookRepository;
     private final FacebookPageFeedJobParameter facebookFeedJobParameter;
 
     private int chunkSize;
 
-    @Value("${chunkSize:1000}")
+    @Value("${chunkSize:100}")
     public void setChunkSize(int chunkSize) {
         this.chunkSize = chunkSize;
     }
@@ -70,7 +70,7 @@ public class FacebookPageFeedBatchConfiguration {
     @StepScope
     public FacebookPageItemReader reader() {
         return new FacebookPageItemReader(
-                restTemplate,
+                facebookRestTemplate,
                 chunkSize,
                 facebookFeedJobParameter.getPageId(),
                 facebookFeedJobParameter.getPageToken());

@@ -1,9 +1,8 @@
 dependencies {
-    compile project(':devbeginner-news-core')
-    compile ('org.springframework.boot:spring-boot-starter-web') {
-        exclude module: "spring-boot-starter-tomcat"
-    }
-    compile 'org.springframework.boot:spring-boot-starter-batch'
-    compile 'org.springframework.boot:spring-boot-starter-json'
-    compile 'org.springframework.batch:spring-batch-test'
+    implementation project(':devbeginner-news-core')
+    implementation 'org.springframework.boot:spring-boot-starter-batch'
+    implementation 'org.springframework.boot:spring-boot-starter-json' // JavaTimeModule
+    implementation 'org.springframework.boot:spring-boot-configuration-processor' // ConfigurationProperties
+    implementation 'org.springframework:spring-web' // RestTemplate
+    testImplementation 'org.springframework.batch:spring-batch-test'
 }

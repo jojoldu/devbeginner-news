@@ -10,15 +10,16 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import static java.lang.String.format;
+
 @Slf4j
 @RequiredArgsConstructor
 @Component
 public class FacebookRestTemplate {
     private final RestTemplate restTemplate;
 
-    public FacebookFeedCollection feed(String pageId, String pageToken) {
-        final String URL = String.format("https://graph.facebook.com/v3.3/%s/feed?limit=100&access_token=%s&fields=id,message,created_time,attachments{url},likes.limit(1).summary(true)", pageId, pageToken);
-        return feed(URL);
+    public FacebookFeedCollection feed(String pageId, int pageSize, String pageToken) {
+        return feed(format("https://graph.facebook.com/v4.0/%s/feed?limit=%d&access_token=%s&fields=id,message,from,created_time,attachments{url},likes.limit(1).summary(true)", pageId, pageSize, pageToken));
     }
 
     public FacebookFeedCollection feed(String url) {

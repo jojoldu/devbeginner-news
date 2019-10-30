@@ -1,5 +1,6 @@
 package com.jojoldu.devbeginnernews.batch.job.facebook.feed;
 
+import com.jojoldu.devbeginnernews.batch.job.facebook.FacebookRestTemplate;
 import com.jojoldu.devbeginnernews.batch.job.facebook.feed.dto.FacebookFeedCollection;
 import com.jojoldu.devbeginnernews.batch.job.facebook.feed.dto.FacebookFeedDto;
 import lombok.Getter;
@@ -26,7 +27,7 @@ import static java.lang.String.format;
 @Slf4j
 @Getter
 public class FacebookPageItemReader implements ItemReader<FacebookFeedDto> {
-    private final RestTemplate restTemplate;
+    private final FacebookRestTemplate restTemplate;
     private String targetUrl;
     private String pageId;
 
@@ -36,7 +37,7 @@ public class FacebookPageItemReader implements ItemReader<FacebookFeedDto> {
 
     private List<FacebookFeedDto> results;
 
-    public FacebookPageItemReader(RestTemplate restTemplate, int pageSize, String pageId, String pageToken) {
+    public FacebookPageItemReader(FacebookRestTemplate restTemplate, int pageSize, String pageId, String pageToken) {
         if(pageSize > 100) {
             throw new IllegalArgumentException("페이스북 조회는 한번에 100을 초과할 수 없습니다.");
         }
@@ -77,14 +78,11 @@ public class FacebookPageItemReader implements ItemReader<FacebookFeedDto> {
                 return;
             }
 
-            ResponseEntity<FacebookFeedCollection> responseEntity = restTemplate.getForEntity(targetUrl, FacebookFeedCollection.class, "{url}");
-            HttpStatus statusCode = responseEntity.getStatusCode();
-
-            if (!HttpStatus.OK.equals(statusCode)) {
-                log.error("페이스북 posts API 비정상 응답 statusCode={}", statusCode);
+            FacebookFeedCollection body = restTemplate.feed(targetUrl);
+            if(body == null) {
+                return;
             }
 
-            FacebookFeedCollection body = responseEntity.getBody();
             log.info(">>>>>>>> Last Feed Time= {}", body.getLastFeedTime());
             log.info(">>>>>>>> Next Url= {}", body.getNextUrl());
 

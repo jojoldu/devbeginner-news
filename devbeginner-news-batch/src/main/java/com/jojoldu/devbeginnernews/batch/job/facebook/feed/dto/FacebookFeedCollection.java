@@ -40,7 +40,7 @@ public class FacebookFeedCollection {
 
     public LocalDateTime getLastFeedTime() {
         if(CollectionUtils.isEmpty(data)) {
-            return null;
+            return LocalDateTime.now();
         }
         return data.get(data.size() - 1).parseCreatedTime();
     }

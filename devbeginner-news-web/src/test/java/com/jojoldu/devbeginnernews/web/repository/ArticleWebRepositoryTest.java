@@ -47,6 +47,24 @@ public class ArticleWebRepositoryTest {
         assertThat(articles.get(2).getRegistrationDateTime()).isEqualTo(dateTime1);
     }
 
+    @Test
+    public void offset은_page번호가아니라_item인덱스_기준이다() {
+        //given
+        LocalDateTime dateTime1 = of(2019, 8, 1, 0, 0, 0);
+        article(dateTime1);
+        LocalDateTime dateTime2 = of(2019, 9, 1, 0, 0, 0);
+        article(dateTime2);
+        LocalDateTime dateTime3 = of(2019, 10, 1, 0, 0, 0);
+        article(dateTime3);
+
+        //when
+        List<Article> articles = articleWebRepository.findAllLimitDesc(2, 10);
+
+        //then
+        assertThat(articles.size()).isEqualTo(1);
+        assertThat(articles.get(0).getRegistrationDateTime()).isEqualTo(dateTime1);
+    }
+
     private void article(LocalDateTime dateTime) {
         articleWebRepository.save(Article.builder()
                 .title("title")
