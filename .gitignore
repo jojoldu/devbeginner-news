@@ -8,7 +8,7 @@ build/
 logs
 keystore.p12
 sample.json
-facebook.yml
+application-facebook.yml
 
 /devbeginner-news-web/src/main/resources/application-local-oauth.yml
 /devbeginner-news-web/src/main/resources/application-real-oauth.yml

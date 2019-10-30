@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 
 @Getter
 @NoArgsConstructor
-public class FacebookFeedJobParameter {
+public class FacebookPageFeedJobParameter {
     private String pageToken;
     private String pageId;
 

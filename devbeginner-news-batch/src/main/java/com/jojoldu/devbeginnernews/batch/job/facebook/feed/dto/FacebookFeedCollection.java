@@ -3,6 +3,7 @@ package com.jojoldu.devbeginnernews.batch.job.facebook.feed.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.jojoldu.devbeginnernews.batch.job.facebook.FacebookPagingDto;
 import com.jojoldu.devbeginnernews.core.article.Article;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.util.CollectionUtils;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static java.net.URLDecoder.decode;
+import static lombok.AccessLevel.PRIVATE;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Getter
@@ -29,12 +31,11 @@ public class FacebookFeedCollection {
         this.paging = paging;
     }
 
-    public int size() {
-        return data.size();
-    }
-
-    public FacebookFeedDto get (int i) {
-        return data.get(i);
+    public List<FacebookFeedDto> getOnlyMyPosts (String pageId) {
+        return data.stream()
+                .filter(d -> d.isMyPost(pageId))
+                .filter(FacebookFeedDto::isNotEmpty)
+                .collect(Collectors.toList());
     }
 
     public LocalDateTime getLastFeedTime() {

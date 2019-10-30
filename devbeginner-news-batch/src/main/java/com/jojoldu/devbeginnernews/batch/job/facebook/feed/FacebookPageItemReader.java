@@ -13,6 +13,8 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.lang.String.format;
 
@@ -26,17 +28,23 @@ import static java.lang.String.format;
 public class FacebookPageItemReader implements ItemReader<FacebookFeedDto> {
     private final RestTemplate restTemplate;
     private String targetUrl;
+    private String pageId;
 
     private int current = 0;
     private int page = 0;
     private int pageSize;
 
-    private FacebookFeedCollection results;
+    private List<FacebookFeedDto> results;
 
     public FacebookPageItemReader(RestTemplate restTemplate, int pageSize, String pageId, String pageToken) {
+        if(pageSize > 100) {
+            throw new IllegalArgumentException("페이스북 조회는 한번에 100을 초과할 수 없습니다.");
+        }
         this.restTemplate = restTemplate;
         this.pageSize = pageSize;
-        this.targetUrl = format("https://graph.facebook.com/v3.3/%s/feed?limit=%d&access_token=%s&fields=id,message,created_time,attachments{url},likes.limit(1).summary(true)", pageId, pageSize, pageToken);
+        this.pageId = pageId;
+        this.targetUrl = format("https://graph.facebook.com/v4.0/%s/feed?limit=%d&access_token=%s&fields=id,message,from,created_time,attachments{url},likes.limit(1).summary(true)", pageId, pageSize, pageToken);
+        log.info("targetUrl={}", targetUrl);
     }
 
     @Override
@@ -65,7 +73,7 @@ public class FacebookPageItemReader implements ItemReader<FacebookFeedDto> {
     private void doReadPage() {
         try {
             if (StringUtils.isEmpty(targetUrl)) {
-                results = new FacebookFeedCollection();
+                results = new ArrayList<>();
                 return;
             }
 
@@ -76,11 +84,14 @@ public class FacebookPageItemReader implements ItemReader<FacebookFeedDto> {
                 log.error("페이스북 posts API 비정상 응답 statusCode={}", statusCode);
             }
 
-            log.info(">>>>>>>> Last Feed Time= {}", responseEntity.getBody().getLastFeedTime());
-            log.info(">>>>>>>> Next Url= {}", responseEntity.getBody().getNextUrl());
+            FacebookFeedCollection body = responseEntity.getBody();
+            log.info(">>>>>>>> Last Feed Time= {}", body.getLastFeedTime());
+            log.info(">>>>>>>> Next Url= {}", body.getNextUrl());
 
-            results = responseEntity.getBody();
-            targetUrl = results.getNextUrl();
+            results = body.getOnlyMyPosts(pageId);
+            targetUrl = body.getNextUrl();
+            pageSize = results.size();
+
         } catch (HttpClientErrorException hce) {
             log.error("페이스북 posts API 요청 실패 statusCode={}, body={}", hce.getStatusCode(), hce.getResponseBodyAsString(), hce);
             throw hce;

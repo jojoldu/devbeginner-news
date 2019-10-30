@@ -1,9 +1,7 @@
 package com.jojoldu.devbeginnernews.batch.job.facebook.feed;
 
-import com.jojoldu.devbeginnernews.batch.job.facebook.FacebookRestTemplate;
 import com.jojoldu.devbeginnernews.batch.job.facebook.feed.dto.FacebookFeedDto;
 import com.jojoldu.devbeginnernews.core.article.Article;
-import com.jojoldu.devbeginnernews.core.article.ArticleRepository;
 import com.jojoldu.devbeginnernews.core.article.facebook.ArticleFacebookRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +33,7 @@ public class FacebookPageFeedBatchConfiguration {
     private final StepBuilderFactory stepBuilderFactory;
     private final RestTemplate restTemplate;
     private final ArticleFacebookRepository articleFacebookRepository;
-    private final FacebookFeedJobParameter facebookFeedJobParameter;
+    private final FacebookPageFeedJobParameter facebookFeedJobParameter;
 
     private int chunkSize;
 
@@ -46,8 +44,8 @@ public class FacebookPageFeedBatchConfiguration {
 
     @Bean
     @JobScope
-    public FacebookFeedJobParameter facebookFeedJobParameter() {
-        return new FacebookFeedJobParameter();
+    public FacebookPageFeedJobParameter jobParameter() {
+        return new FacebookPageFeedJobParameter();
     }
 
     @Bean(BEAN_PREFIX + "job")
@@ -60,7 +58,7 @@ public class FacebookPageFeedBatchConfiguration {
 
     @Bean(BEAN_PREFIX + "step")
     public Step step() {
-        return stepBuilderFactory.get("BEAN_PREFIX" + "step")
+        return stepBuilderFactory.get(BEAN_PREFIX+ "step")
                 .<FacebookFeedDto, Article>chunk(chunkSize)
                 .reader(reader())
                 .processor(processor())

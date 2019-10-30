@@ -8,12 +8,17 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.List;
+
+import static com.jojoldu.devbeginnernews.core.article.ArticleDetailType.ETC;
 
 @ToString
 @Getter
@@ -27,14 +32,16 @@ public class FacebookFeedDto {
     private String createdTime;
     private FacebookLikeDto likes;
     private FacebookAttachmentsDto attachments;
+    private FacebookFromDto from;
 
     @Builder
-    public FacebookFeedDto(String id, String message, String createdTime, FacebookLikeDto likes, FacebookAttachmentsDto attachments) {
+    public FacebookFeedDto(String id, String message, String createdTime, FacebookLikeDto likes, FacebookAttachmentsDto attachments, FacebookFromDto from) {
         this.id = id;
         this.message = message;
         this.createdTime = createdTime;
         this.likes = likes;
         this.attachments = attachments;
+        this.from = from;
     }
 
     @Builder(builderMethodName = "forTest", builderClassName = "ForTest")
@@ -44,6 +51,14 @@ public class FacebookFeedDto {
         this.createdTime = createdTime;
         this.likes = new FacebookLikeDto(totalCount);
         this.attachments = new FacebookAttachmentsDto(url);
+    }
+
+    public boolean isMyPost(String pageId) {
+        if(from == null) {
+            return false;
+        }
+
+        return from.isMyPost(pageId);
     }
 
     public boolean isNotEmpty() {
@@ -66,6 +81,10 @@ public class FacebookFeedDto {
     }
 
     public String parseTitle() {
+        if(StringUtils.isEmpty(message)) {
+            return message;
+        }
+
         String title = message.split("\n")[0];
         if(title.length() > 200) {
             return title.substring(199);
@@ -82,11 +101,15 @@ public class FacebookFeedDto {
     }
 
     public Article toArticle(String pageId) {
+        if(StringUtils.isEmpty(message)) {
+            throw new IllegalArgumentException("message는 빈값이면 안됩니다. id="+id);
+        }
+
         Article article = Article.builder()
                 .registrationDateTime(parseCreatedTime())
                 .content(message)
                 .link(parseUrl())
-                .articleType(ArticleDetailType.ETC)
+                .articleType(ETC)
                 .title(parseTitle())
                 .build();
         article.setFacebook(toArticleFacebook(pageId));
