@@ -1,4 +1,4 @@
-package com.jojoldu.devbeginnernews.batch;
+package com.jojoldu.devbeginnernews;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

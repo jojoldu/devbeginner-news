@@ -1,8 +1,7 @@
-package com.jojoldu.devbeginnernews.batch;
+package com.jojoldu.devbeginnernews;
 
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
@@ -12,8 +11,4 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan
 public class TestJobConfiguration {
 
-    @Bean
-    public JobTestUtils jobTestUtils() {
-        return new JobTestUtils();
-    }
 }

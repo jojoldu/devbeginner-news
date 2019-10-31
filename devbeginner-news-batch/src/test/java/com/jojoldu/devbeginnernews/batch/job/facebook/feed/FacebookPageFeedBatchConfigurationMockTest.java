@@ -1,6 +1,6 @@
 package com.jojoldu.devbeginnernews.batch.job.facebook.feed;
 
-import com.jojoldu.devbeginnernews.batch.JobTestUtils;
+import com.jojoldu.devbeginnernews.TestJobConfiguration;
 import com.jojoldu.devbeginnernews.batch.job.facebook.FacebookPagingDto;
 import com.jojoldu.devbeginnernews.batch.job.facebook.FacebookRestTemplate;
 import com.jojoldu.devbeginnernews.batch.job.facebook.feed.dto.FacebookFeedCollection;
@@ -17,13 +17,12 @@ import org.springframework.batch.core.BatchStatus;
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
+import org.springframework.batch.test.JobLauncherTestUtils;
+import org.springframework.batch.test.context.SpringBatchTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -31,20 +30,18 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import static com.jojoldu.devbeginnernews.batch.job.facebook.feed.FacebookPageFeedBatchConfiguration.JOB_NAME;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyObject;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBatchTest
+@SpringBootTest(classes = {FacebookPageFeedBatchConfiguration.class, TestJobConfiguration.class})
 public class FacebookPageFeedBatchConfigurationMockTest {
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     @Autowired
-    private JobTestUtils jobTestUtils;
+    private JobLauncherTestUtils jobLauncherTestUtils;
 
     @Autowired
     private ArticleRepository articleRepository;
@@ -76,13 +73,13 @@ public class FacebookPageFeedBatchConfigurationMockTest {
                 .willReturn(apiResponse);
 
         //when
-        JobParameters jobParameters = new JobParametersBuilder()
+        JobParameters jobParameters = new JobParametersBuilder(jobLauncherTestUtils.getUniqueJobParameters())
                 .addString("pageToken", "1")
                 .addString("pageId", pageId)
                 .addDate("version", new Date())
                 .toJobParameters();
 
-        JobExecution jobExecution = jobTestUtils.getJobTester(JOB_NAME).launchJob(jobParameters);
+        JobExecution jobExecution = jobLauncherTestUtils.launchJob(jobParameters);
 
         //then
         assertThat(jobExecution.getStatus()).isEqualTo(BatchStatus.COMPLETED);
@@ -97,3 +94,4 @@ public class FacebookPageFeedBatchConfigurationMockTest {
 
     }
 }
+
