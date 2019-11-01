@@ -4,6 +4,8 @@ import com.jojoldu.devbeginnernews.batch.job.facebook.FacebookRestTemplate;
 import com.jojoldu.devbeginnernews.batch.job.facebook.feed.dto.FacebookFeedDto;
 import com.jojoldu.devbeginnernews.core.article.Article;
 import com.jojoldu.devbeginnernews.core.article.facebook.ArticleFacebookRepository;
+import com.jojoldu.devbeginnernews.core.token.FacebookOauthToken;
+import com.jojoldu.devbeginnernews.core.token.FacebookOauthTokenRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
@@ -33,7 +35,8 @@ public class FacebookPageFeedBatchConfiguration {
     private final StepBuilderFactory stepBuilderFactory;
     private final FacebookRestTemplate facebookRestTemplate;
     private final ArticleFacebookRepository articleFacebookRepository;
-    private final FacebookPageFeedJobParameter facebookFeedJobParameter;
+    private final FacebookPageFeedJobParameter jobParameter;
+    private final FacebookOauthTokenRepository facebookOauthTokenRepository;
 
     private int chunkSize;
 
@@ -69,18 +72,21 @@ public class FacebookPageFeedBatchConfiguration {
     @Bean(BEAN_PREFIX + "reader")
     @StepScope
     public FacebookPageItemReader reader() {
+        FacebookOauthToken token = facebookOauthTokenRepository.findByPageId(jobParameter.getPageId())
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 PageId입니다."));
+
         return new FacebookPageItemReader(
                 facebookRestTemplate,
                 chunkSize,
-                facebookFeedJobParameter.getPageId(),
-                facebookFeedJobParameter.getPageToken());
+                token.getPageId(),
+                token.getToken());
     }
 
     @Bean(BEAN_PREFIX + "processor")
     @StepScope
     public ItemProcessor<FacebookFeedDto, Article> processor() {
         return item -> {
-            String pageId = facebookFeedJobParameter.getPageId();
+            String pageId = jobParameter.getPageId();
             Article article = item.toArticle(pageId);
 
             return articleFacebookRepository.findByPostsId(article.getPostsId())

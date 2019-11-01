@@ -10,6 +10,8 @@ import com.jojoldu.devbeginnernews.core.article.Article;
 import com.jojoldu.devbeginnernews.core.article.ArticleRepository;
 import com.jojoldu.devbeginnernews.core.article.facebook.ArticleFacebook;
 import com.jojoldu.devbeginnernews.core.article.facebook.ArticleFacebookRepository;
+import com.jojoldu.devbeginnernews.core.token.FacebookOauthToken;
+import com.jojoldu.devbeginnernews.core.token.FacebookOauthTokenRepository;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -49,18 +51,25 @@ public class FacebookPageFeedBatchConfigurationMockTest {
     @Autowired
     private ArticleFacebookRepository articleFacebookRepository;
 
+    @Autowired
+    private FacebookOauthTokenRepository facebookOauthTokenRepository;
+
     @MockBean
     private FacebookRestTemplate facebookRestTemplate;
 
     @After
     public void tearDown() throws Exception {
         articleRepository.deleteAll();
+        facebookOauthTokenRepository.deleteAll();
     }
 
     @Test
     public void FacebookAPI_응답결과를_저장한다() throws Exception {
         //given
         String pageId = "1";
+        String pageToken = "1";
+        facebookOauthTokenRepository.save(new FacebookOauthToken(pageId, pageToken));
+
         FacebookFeedDto feedDto = FacebookFeedDto.builder()
                 .id("1")
                 .message("팀 게임 즉, 회사에서 팀 단위로 일을 하다보면 \\\"에이스가 아닌 역할\\\"에 집중할때가 있습니다.\\n\\n팀을 위해 주요한 역할을 양보한다고 볼수도 있겠습니다만,\\n개인으로 봤을때 그게 도움이 될까요?\\n\\n좋은 팀에 있다고 해서 실력있는 개발자가 아닐 수 있습니다.\\n\\n이번에 그 이야기를 한번 적어보았습니다.\\n\\n출근길에 가볍게 한번 봐주세요 :)\\n\\nhttps://jojoldu.tistory.com/419")
@@ -74,7 +83,6 @@ public class FacebookPageFeedBatchConfigurationMockTest {
 
         //when
         JobParameters jobParameters = new JobParametersBuilder(jobLauncherTestUtils.getUniqueJobParameters())
-                .addString("pageToken", "1")
                 .addString("pageId", pageId)
                 .addDate("version", new Date())
                 .toJobParameters();
