@@ -1,4 +1,4 @@
-package com.jojoldu.devbeginnernews.batch.job.facebook;
+package com.jojoldu.devbeginnernews.batch.job.facebook.feed;
 
 import com.jojoldu.devbeginnernews.batch.job.facebook.feed.dto.FacebookFeedCollection;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +15,7 @@ import static java.lang.String.format;
 @Slf4j
 @RequiredArgsConstructor
 @Component
-public class FacebookRestTemplate {
+public class FacebookFeedRestTemplate {
     private final RestTemplate restTemplate;
 
     public FacebookFeedCollection feed(String pageId, int pageSize, String pageToken) {

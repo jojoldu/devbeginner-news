@@ -1,4 +1,4 @@
-package com.jojoldu.devbeginnernews.batch.job.facebook;
+package com.jojoldu.devbeginnernews.batch.job.facebook.feed.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;

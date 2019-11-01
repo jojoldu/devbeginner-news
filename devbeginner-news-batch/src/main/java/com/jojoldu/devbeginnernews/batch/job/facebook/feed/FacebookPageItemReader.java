@@ -1,17 +1,12 @@
 package com.jojoldu.devbeginnernews.batch.job.facebook.feed;
 
-import com.jojoldu.devbeginnernews.batch.job.facebook.FacebookRestTemplate;
 import com.jojoldu.devbeginnernews.batch.job.facebook.feed.dto.FacebookFeedCollection;
 import com.jojoldu.devbeginnernews.batch.job.facebook.feed.dto.FacebookFeedDto;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.item.ItemReader;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.RestTemplate;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -27,7 +22,7 @@ import static java.lang.String.format;
 @Slf4j
 @Getter
 public class FacebookPageItemReader implements ItemReader<FacebookFeedDto> {
-    private final FacebookRestTemplate restTemplate;
+    private final FacebookFeedRestTemplate restTemplate;
     private String targetUrl;
     private String pageId;
 
@@ -37,7 +32,7 @@ public class FacebookPageItemReader implements ItemReader<FacebookFeedDto> {
 
     private List<FacebookFeedDto> results;
 
-    public FacebookPageItemReader(FacebookRestTemplate restTemplate, int pageSize, String pageId, String pageToken) {
+    public FacebookPageItemReader(FacebookFeedRestTemplate restTemplate, int pageSize, String pageId, String pageToken) {
         if(pageSize > 100) {
             throw new IllegalArgumentException("페이스북 조회는 한번에 100을 초과할 수 없습니다.");
         }

@@ -1,8 +1,7 @@
 package com.jojoldu.devbeginnernews.batch.job.facebook.feed;
 
 import com.jojoldu.devbeginnernews.TestJobConfiguration;
-import com.jojoldu.devbeginnernews.batch.job.facebook.FacebookPagingDto;
-import com.jojoldu.devbeginnernews.batch.job.facebook.FacebookRestTemplate;
+import com.jojoldu.devbeginnernews.batch.job.facebook.feed.dto.FacebookPagingDto;
 import com.jojoldu.devbeginnernews.batch.job.facebook.feed.dto.FacebookFeedCollection;
 import com.jojoldu.devbeginnernews.batch.job.facebook.feed.dto.FacebookFeedDto;
 import com.jojoldu.devbeginnernews.batch.job.facebook.feed.dto.FacebookFromDto;
@@ -55,7 +54,7 @@ public class FacebookPageFeedBatchConfigurationMockTest {
     private FacebookOauthTokenRepository facebookOauthTokenRepository;
 
     @MockBean
-    private FacebookRestTemplate facebookRestTemplate;
+    private FacebookFeedRestTemplate facebookRestTemplate;
 
     @After
     public void tearDown() throws Exception {

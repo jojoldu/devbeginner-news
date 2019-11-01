@@ -10,6 +10,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,5 +38,11 @@ public class FacebookOauthToken extends BaseTimeEntity {
     public FacebookOauthToken(String pageId, String token) {
         this.pageId = pageId;
         this.token = token;
+    }
+
+    public void updateToken (String token) {
+        if(!StringUtils.isEmpty(token)){
+            this.token = token;
+        }
     }
 }

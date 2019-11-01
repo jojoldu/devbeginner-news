@@ -1,6 +1,5 @@
 package com.jojoldu.devbeginnernews.batch.job.facebook.feed;
 
-import com.jojoldu.devbeginnernews.batch.job.facebook.FacebookRestTemplate;
 import com.jojoldu.devbeginnernews.batch.job.facebook.feed.dto.FacebookFeedDto;
 import com.jojoldu.devbeginnernews.core.article.Article;
 import com.jojoldu.devbeginnernews.core.article.facebook.ArticleFacebookRepository;
@@ -33,7 +32,7 @@ public class FacebookPageFeedBatchConfiguration {
     private final EntityManagerFactory emf;
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
-    private final FacebookRestTemplate facebookRestTemplate;
+    private final FacebookFeedRestTemplate facebookRestTemplate;
     private final ArticleFacebookRepository articleFacebookRepository;
     private final FacebookPageFeedJobParameter jobParameter;
     private final FacebookOauthTokenRepository facebookOauthTokenRepository;
