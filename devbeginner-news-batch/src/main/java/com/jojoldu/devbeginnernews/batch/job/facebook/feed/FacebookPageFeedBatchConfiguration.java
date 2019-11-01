@@ -44,7 +44,7 @@ public class FacebookPageFeedBatchConfiguration {
         this.chunkSize = chunkSize;
     }
 
-    @Bean
+    @Bean(BEAN_PREFIX+"jobParameter")
     @JobScope
     public FacebookPageFeedJobParameter jobParameter() {
         return new FacebookPageFeedJobParameter();
