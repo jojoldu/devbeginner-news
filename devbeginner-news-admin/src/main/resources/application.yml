@@ -8,7 +8,7 @@ logging:
   path: logs/devbeginner-news-admin/
 ---
 spring.profiles: local
-spring.profiles.include: oauth
+spring.profiles.include: admin-oauth
 spring:
   devtools:
     livereload:

@@ -9,7 +9,7 @@ logs
 keystore.p12
 sample.json
 application-facebook.yml
-application-oauth.yml
+application-admin-oauth.yml
 /devbeginner-news-web/src/main/resources/application-local-oauth.yml
 /devbeginner-news-web/src/main/resources/application-real-oauth.yml
 application-real-db.yml
