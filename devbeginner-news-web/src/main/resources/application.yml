@@ -6,7 +6,7 @@ spring:
     properties:
       hibernate.dialect: org.hibernate.dialect.MySQL5InnoDBDialect
       hibernate.hbm2ddl.import_files_sql_extractor: org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
-      hibernate.default_batch_fetch_size: ${chunkSize:10000}
+      hibernate.default_batch_fetch_size: ${chunkSize:1000}
     open-in-view: false
   session:
     store-type: jdbc

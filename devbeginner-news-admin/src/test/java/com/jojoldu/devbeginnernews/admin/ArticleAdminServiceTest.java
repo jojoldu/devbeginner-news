@@ -1,5 +1,6 @@
 package com.jojoldu.devbeginnernews.admin;
 
+import com.jojoldu.devbeginnernews.admin.service.ArticleAdminService;
 import com.jojoldu.devbeginnernews.core.article.Article;
 import com.jojoldu.devbeginnernews.core.article.ArticleDetailType;
 import com.jojoldu.devbeginnernews.core.article.ArticleRepository;

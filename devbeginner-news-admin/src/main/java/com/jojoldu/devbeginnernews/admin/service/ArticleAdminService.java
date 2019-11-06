@@ -1,4 +1,4 @@
-package com.jojoldu.devbeginnernews.admin;
+package com.jojoldu.devbeginnernews.admin.service;
 
 import com.jojoldu.devbeginnernews.core.article.Article;
 import com.jojoldu.devbeginnernews.core.article.ArticleRepository;
