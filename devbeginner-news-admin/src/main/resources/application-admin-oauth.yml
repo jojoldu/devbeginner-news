@@ -1,0 +1,12 @@
+---
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          facebook:
+            authorizationUri: https://www.facebook.com/v5.0/dialog/oauth
+            tokenUri: https://graph.facebook.com/v5.0/oauth/access_token
+            scope: public_profile, email, manage_pages, pages_show_list
+
+

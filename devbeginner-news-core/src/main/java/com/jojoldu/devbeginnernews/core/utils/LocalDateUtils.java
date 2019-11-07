@@ -1,10 +1,8 @@
 package com.jojoldu.devbeginnernews.core.utils;
 
-import com.jojoldu.devbeginnernews.core.token.FacebookOauthToken;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import static java.time.LocalDate.parse;

@@ -2,17 +2,17 @@ spring:
   profiles:
     include:
       - rds
+      - admin-oauth
     active: local
-
+  devtools:
+    livereload:
+      enabled: false
 logging:
   path: logs/devbeginner-news-admin/
 ---
 spring.profiles: local
-spring.profiles.include: admin-oauth
+spring.profiles.include: oauth-secret
 spring:
-  devtools:
-    livereload:
-#      enabled: true
   mustache:
     cache: false
 server:
@@ -24,3 +24,19 @@ server:
     key-alias: devbeginner-news-ssl
   port: 8443
 
+---
+spring.profiles: local-real
+spring.profiles.include:
+  - oauth-secret
+  - real-db
+spring:
+  mustache:
+    cache: false
+server:
+  ssl:
+    enabled: true
+    key-store: keystore.p12
+    key-store-password: 123456
+    key-store-type: PKCS12
+    key-alias: devbeginner-news-ssl
+  port: 8443

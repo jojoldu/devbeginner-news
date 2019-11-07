@@ -9,8 +9,8 @@ import com.jojoldu.devbeginnernews.core.article.Article;
 import com.jojoldu.devbeginnernews.core.article.ArticleRepository;
 import com.jojoldu.devbeginnernews.core.article.facebook.ArticleFacebook;
 import com.jojoldu.devbeginnernews.core.article.facebook.ArticleFacebookRepository;
-import com.jojoldu.devbeginnernews.core.token.FacebookOauthToken;
-import com.jojoldu.devbeginnernews.core.token.FacebookOauthTokenRepository;
+import com.jojoldu.devbeginnernews.core.token.FacebookPageToken;
+import com.jojoldu.devbeginnernews.core.token.FacebookPageTokenRepository;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -51,7 +51,7 @@ public class FacebookPageFeedBatchConfigurationMockTest {
     private ArticleFacebookRepository articleFacebookRepository;
 
     @Autowired
-    private FacebookOauthTokenRepository facebookOauthTokenRepository;
+    private FacebookPageTokenRepository facebookOauthTokenRepository;
 
     @MockBean
     private FacebookFeedRestTemplate facebookRestTemplate;
@@ -67,7 +67,7 @@ public class FacebookPageFeedBatchConfigurationMockTest {
         //given
         String pageId = "1";
         String pageToken = "1";
-        facebookOauthTokenRepository.save(new FacebookOauthToken(pageId, pageToken));
+        facebookOauthTokenRepository.save(new FacebookPageToken(pageId, pageToken));
 
         FacebookFeedDto feedDto = FacebookFeedDto.builder()
                 .id("1")

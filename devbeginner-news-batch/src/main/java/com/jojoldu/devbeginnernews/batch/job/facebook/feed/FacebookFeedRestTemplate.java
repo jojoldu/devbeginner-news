@@ -19,7 +19,7 @@ public class FacebookFeedRestTemplate {
     private final RestTemplate restTemplate;
 
     public FacebookFeedCollection feed(String pageId, int pageSize, String pageToken) {
-        return feed(format("https://graph.facebook.com/v4.0/%s/feed?limit=%d&access_token=%s&fields=id,message,from,created_time,attachments{url},likes.limit(1).summary(true)", pageId, pageSize, pageToken));
+        return feed(format("https://graph.facebook.com/v5.0/%s/feed?limit=%d&access_token=%s&fields=id,message,from,created_time,attachments{url},likes.limit(1).summary(true)", pageId, pageSize, pageToken));
     }
 
     public FacebookFeedCollection feed(String url) {

@@ -5,6 +5,7 @@ import com.jojoldu.devbeginnernews.core.article.Article;
 import com.jojoldu.devbeginnernews.core.article.ArticleDetailType;
 import com.jojoldu.devbeginnernews.core.article.ArticleRepository;
 import com.jojoldu.devbeginnernews.core.article.facebook.ArticleFacebookRepository;
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,11 @@ public class ArticleAdminServiceTest {
 
     @Autowired
     ArticleFacebookRepository articleFacebookRepository;
+
+    @After
+    public void tearDown() throws Exception {
+        articleRepository.deleteAll();
+    }
 
     @Test
     public void name() {

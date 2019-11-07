@@ -19,7 +19,6 @@ spring:
 ---
 spring:
   profiles: local
-
   datasource:
     hikari:
       jdbc-url: jdbc:h2:mem://localhost/~/devbeginner-news;MVCC=TRUE
@@ -35,6 +34,7 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+
 ---
 spring:
   profiles: local-real

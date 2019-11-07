@@ -9,7 +9,7 @@ import java.util.Optional;
  * Blog : http://jojoldu.tistory.com
  * Github : http://github.com/jojoldu
  */
-public interface FacebookOauthTokenRepository extends JpaRepository<FacebookOauthToken, Long> {
+public interface FacebookPageTokenRepository extends JpaRepository<FacebookPageToken, Long> {
 
-    Optional<FacebookOauthToken> findByPageId (String pageId);
+    Optional<FacebookPageToken> findByPageId (String pageId);
 }
