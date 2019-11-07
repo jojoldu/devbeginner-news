@@ -17,7 +17,7 @@ spring:
 logging:
   path: logs/devbeginner-news-web/
 ---
-spring.profiles.include: local-oauth
+spring.profiles.include: real-oauth
 spring:
   profiles: local
   devtools:
@@ -39,7 +39,7 @@ spring:
       ddl-auto: update
 
 ---
-spring.profiles.include: real-db, local-oauth
+spring.profiles.include: real-db, real-oauth
 spring:
   profiles: local-real
   devtools:
