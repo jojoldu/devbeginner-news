@@ -1,5 +1,6 @@
 package com.jojoldu.devbeginnernews.admin.config.auth;
 
+import com.jojoldu.devbeginnernews.facebook.service.FacebookTokenExchanger;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -17,7 +18,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
         OAuth2UserService delegate = new DefaultOAuth2UserService();
         OAuth2User oAuth2User = delegate.loadUser(userRequest);
-        facebookTokenExchanger.exchange(oAuth2User.getName(), userRequest.getAccessToken().getTokenValue());
+        facebookTokenExchanger.exchangeAll(oAuth2User.getName(), userRequest.getAccessToken().getTokenValue());
 
         return oAuth2User;
     }

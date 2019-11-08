@@ -11,6 +11,7 @@ import com.jojoldu.devbeginnernews.core.article.facebook.ArticleFacebook;
 import com.jojoldu.devbeginnernews.core.article.facebook.ArticleFacebookRepository;
 import com.jojoldu.devbeginnernews.core.token.FacebookPageToken;
 import com.jojoldu.devbeginnernews.core.token.FacebookPageTokenRepository;
+import com.jojoldu.devbeginnernews.facebook.service.FacebookPageTokenRefresher;
 import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,6 +32,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
@@ -56,6 +58,9 @@ public class FacebookPageFeedBatchConfigurationMockTest {
     @MockBean
     private FacebookFeedRestTemplate facebookRestTemplate;
 
+    @MockBean
+    private FacebookPageTokenRefresher facebookPageTokenRefresher;
+
     @After
     public void tearDown() throws Exception {
         articleRepository.deleteAll();
@@ -75,7 +80,10 @@ public class FacebookPageFeedBatchConfigurationMockTest {
                 .createdTime("2019-07-26T00:27:08+0000")
                 .from(FacebookFromDto.builder().name("a").id(pageId).build())
                 .build();
-        FacebookFeedCollection apiResponse = new FacebookFeedCollection(Arrays.asList(feedDto), new FacebookPagingDto());
+        FacebookFeedCollection apiResponse = new FacebookFeedCollection(asList(feedDto), new FacebookPagingDto());
+
+        given(facebookPageTokenRefresher.refresh(anyString()))
+                .willReturn(pageToken);
 
         given(facebookRestTemplate.feed(anyString()))
                 .willReturn(apiResponse);

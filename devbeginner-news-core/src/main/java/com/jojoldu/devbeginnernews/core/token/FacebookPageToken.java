@@ -5,15 +5,14 @@ package com.jojoldu.devbeginnernews.core.token;
  * Blog : http://jojoldu.tistory.com
  * Github : http://github.com/jojoldu
  */
+
 import com.jojoldu.devbeginnernews.core.common.BaseTimeEntity;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,7 +29,7 @@ import javax.persistence.UniqueConstraint;
         @UniqueConstraint(name = "uni_facebook_page_token_1", columnNames = {"pageId"})
 })
 public class FacebookPageToken extends BaseTimeEntity {
-    private static final String DEFAULT_PAGE = "845737092205327";
+    public static final String DEFAULT_PAGE = "845737092205327";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,5 +62,13 @@ public class FacebookPageToken extends BaseTimeEntity {
         if(!StringUtils.isEmpty(token)){
             this.token = token;
         }
+    }
+
+    public String getUserToken () {
+        if(this.facebookUserToken == null) {
+            return "";
+        }
+
+        return this.facebookUserToken.getToken();
     }
 }

@@ -6,6 +6,7 @@ import com.jojoldu.devbeginnernews.core.article.Article;
 import com.jojoldu.devbeginnernews.core.article.facebook.ArticleFacebookRepository;
 import com.jojoldu.devbeginnernews.core.token.FacebookPageToken;
 import com.jojoldu.devbeginnernews.core.token.FacebookPageTokenRepository;
+import com.jojoldu.devbeginnernews.facebook.service.FacebookPageTokenRefresher;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
@@ -19,6 +20,7 @@ import org.springframework.batch.item.database.JpaItemWriter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 import javax.persistence.EntityManagerFactory;
 
@@ -34,9 +36,9 @@ public class FacebookPageFeedBatchConfiguration {
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
     private final FacebookFeedRestTemplate facebookRestTemplate;
+    private final FacebookPageTokenRefresher facebookPageTokenRefresher;
     private final ArticleFacebookRepository articleFacebookRepository;
     private final FacebookPageFeedJobParameter jobParameter;
-    private final FacebookPageTokenRepository facebookOauthTokenRepository;
 
     private int chunkSize;
 
@@ -72,14 +74,13 @@ public class FacebookPageFeedBatchConfiguration {
     @Bean(BEAN_PREFIX + "reader")
     @StepScope
     public FacebookPageItemReader reader() {
-        FacebookPageToken token = facebookOauthTokenRepository.findByPageId(jobParameter.getPageId())
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 PageId입니다."));
+        String pageToken = facebookPageTokenRefresher.refresh(jobParameter.getPageId());
 
         return new FacebookPageItemReader(
                 facebookRestTemplate,
                 chunkSize,
-                token.getPageId(),
-                token.getToken());
+                jobParameter.getPageId(),
+                pageToken);
     }
 
     @Bean(BEAN_PREFIX + "processor")

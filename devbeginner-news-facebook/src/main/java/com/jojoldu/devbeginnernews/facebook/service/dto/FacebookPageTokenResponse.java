@@ -1,4 +1,4 @@
-package com.jojoldu.devbeginnernews.admin.config.auth.dto;
+package com.jojoldu.devbeginnernews.facebook.service.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

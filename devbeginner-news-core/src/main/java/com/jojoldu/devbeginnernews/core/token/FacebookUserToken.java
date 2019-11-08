@@ -30,7 +30,7 @@ import java.util.List;
         @UniqueConstraint(name = "uni_facebook_user_token_2", columnNames = {"email"})
 })
 public class FacebookUserToken extends BaseTimeEntity {
-    private static final String DEFAULT_USER = "2139107269552358";
+    public static final String DEFAULT_USER = "2139107269552358";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

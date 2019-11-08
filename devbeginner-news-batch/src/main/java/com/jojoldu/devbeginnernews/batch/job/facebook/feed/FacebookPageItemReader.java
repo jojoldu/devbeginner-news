@@ -39,7 +39,7 @@ public class FacebookPageItemReader implements ItemReader<FacebookFeedDto> {
         this.restTemplate = restTemplate;
         this.pageSize = pageSize;
         this.pageId = pageId;
-        this.targetUrl = format("https://graph.facebook.com/v4.0/%s/feed?limit=%d&access_token=%s&fields=id,message,from,created_time,attachments{url},likes.limit(1).summary(true)", pageId, pageSize, pageToken);
+        this.targetUrl = format("https://graph.facebook.com/v5.0/%s/feed?limit=%d&access_token=%s&fields=id,message,from,created_time,attachments{url},likes.limit(1).summary(true)", pageId, pageSize, pageToken);
         log.info("targetUrl={}", targetUrl);
     }
 
