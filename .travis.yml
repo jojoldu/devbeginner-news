@@ -25,7 +25,8 @@ deploy:
   provider: elasticbeanstalk
   zip_file: archive.zip
   skip_cleanup: true
-  access_key_id: $AWS_ACCESS_KEY
+  access_key_id:
+    secure: $AWS_ACCESS_KEY
   secret_access_key:
     secure: $AWS_SECRET_KEY
   region: "ap-northeast-2"
