@@ -4,6 +4,7 @@ spring:
       ddl-auto: none
     properties:
       hibernate.dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+      hibernate.dialect.storage_engine: innodb
       hibernate.hbm2ddl.import_files_sql_extractor: org.hibernate.tool.hbm2ddl.MultipleLinesSqlCommandExtractor
       hibernate.default_batch_fetch_size: ${chunkSize:1000}
     open-in-view: false
@@ -21,7 +22,7 @@ spring:
   profiles: local
   datasource:
     hikari:
-      jdbc-url: jdbc:h2:mem://localhost/~/devbeginner-news;MVCC=TRUE
+      jdbc-url: jdbc:h2:mem://localhost/~/devbeginner-news;MODE=MYSQL
       username: sa
       password:
       driver-class-name: org.h2.Driver

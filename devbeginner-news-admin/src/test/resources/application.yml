@@ -1,5 +1,8 @@
 spring:
-  profiles.active: local
+  profiles:
+    include:
+      - rds
+    active: local
   jpa:
     hibernate:
       ddl-auto: none
