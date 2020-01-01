@@ -19,7 +19,6 @@ spring:
 ---
 spring.profiles: local-real
 spring.profiles.include:
-  - rds
   - real-db
 
 ---
